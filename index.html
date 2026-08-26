@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help Us Rehome Our Bunnies</title>
+<meta name="description" content="Nine much-loved rabbits looking for kind, well-prepared homes. Meet them and apply to adopt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐰</text></svg>">
+</head>
+<body>
+
+<!-- Reminder strip: turn off with showSetupBanner:false in js/config.js -->
+<div id="setup-banner" class="setup-banner" hidden>
+  <span>🐇 <strong>Setup reminder:</strong> this site is still showing example rabbits. Edit <code>js/rabbits.js</code> and <code>js/config.js</code>, then set <code>showSetupBanner: false</code>.</span>
+</div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="34" height="34"><g fill="currentColor"><ellipse cx="13.5" cy="12" rx="4" ry="9"/><ellipse cx="26.5" cy="12" rx="4" ry="9"/><circle cx="20" cy="26" r="11"/></g><g fill="#fff"><circle cx="16" cy="24" r="1.7"/><circle cx="24" cy="24" r="1.7"/></g></svg>
+      </span>
+      <span class="brand-text" id="brand-text">Help Us Rehome Our Bunnies</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#rabbits">Meet the rabbits</a>
+      <a href="#how">How it works</a>
+      <a href="#care">What they need</a>
+      <a class="nav-cta" href="#apply">Apply to adopt</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="sr-only">Menu</span><span class="burger" aria-hidden="true"></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Main" hidden>
+    <a href="#rabbits">Meet the rabbits</a>
+    <a href="#how">How it works</a>
+    <a href="#care">What they need</a>
+    <a href="#apply">Apply to adopt</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="hero-decor" aria-hidden="true">
+      <span class="float f1">🌿</span><span class="float f2">🥕</span>
+      <span class="float f3">🌸</span><span class="float f4">🌿</span>
+      <span class="float f5">🍃</span>
+    </div>
+    <div class="wrap hero-inner">
+      <p class="eyebrow">A family looking for kind homes</p>
+      <h1>Nine bunnies,<br>looking for<br><em>somewhere lovely</em></h1>
+      <p class="hero-lead" id="hero-tagline">Nine much-loved rabbits looking for their next chapter</p>
+      <p class="hero-body">
+        My mum has cared for these rabbits for years, and every one of them has been
+        thoroughly spoiled. She's getting on now, and looking after nine of them has
+        become more than she can manage. So we're doing the hard thing and finding
+        them homes — carefully, and only with people we're confident will do right by them.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#rabbits">Meet them all</a>
+        <a class="btn btn-ghost" href="#apply">Start an application</a>
+      </div>
+      <p class="hero-note" id="hero-location">📍 Please add your town / county here</p>
+    </div>
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,50 C240,90 480,10 720,35 C960,60 1200,90 1440,45 L1440,90 L0,90 Z"/></svg>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <section class="strip">
+    <div class="wrap strip-grid">
+      <div class="strip-item"><span aria-hidden="true">💉</span><h3>Vaccinated &amp; neutered</h3><p>All up to date on myxomatosis and RHD1/RHD2, and all neutered.</p></div>
+      <div class="strip-item"><span aria-hidden="true">🏠</span><h3>Home-raised</h3><p>Handled daily since they were small. Used to people, noise and normal life.</p></div>
+      <div class="strip-item"><span aria-hidden="true">💛</span><h3>No adoption fee</h3><p>We're not selling them. We just want the right homes.</p></div>
+      <div class="strip-item"><span aria-hidden="true">📋</span><h3>Honestly described</h3><p>Where a rabbit is shy, older or hard work, we've said so.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ RABBITS ============ -->
+  <section class="section" id="rabbits">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">Meet them</p>
+        <h2>The bunnies</h2>
+        <p class="section-lead">Click any rabbit to read more about them. Some are bonded pairs who must stay together — we've marked those clearly.</p>
+      </header>
+
+      <div class="filters" role="group" aria-label="Filter rabbits">
+        <button class="chip is-active" data-filter="all">All rabbits</button>
+      </div>
+
+      <div class="rabbit-grid" id="rabbit-grid"></div>
+      <p class="no-results" id="no-results" hidden>No rabbits match that filter.</p>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section section-alt" id="how">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">The process</p>
+        <h2>How adopting works</h2>
+        <p class="section-lead">It's not complicated, but we do take it seriously. These rabbits have had one home their whole lives and we'd like their next one to be their last.</p>
+      </header>
+
+      <ol class="steps">
+        <li class="step"><span class="step-num">1</span>
+          <h3>Fill in the form</h3>
+          <p>It's longer than you might expect. That's deliberate — it tells us whether a rabbit will be safe and happy with you.</p></li>
+        <li class="step"><span class="step-num">2</span>
+          <h3>We'll get in touch</h3>
+          <p>Usually within a few days. We may have follow-up questions, and you'll certainly have some for us.</p></li>
+        <li class="step"><span class="step-num">3</span>
+          <h3>A chat and a look at the space</h3>
+          <p>A video call is fine. We just want to see where the rabbit would live and know it's secure and big enough.</p></li>
+        <li class="step"><span class="step-num">4</span>
+          <h3>Come and meet them</h3>
+          <p>Nothing is decided until you've met. Sometimes a different rabbit turns out to be the right one.</p></li>
+        <li class="step"><span class="step-num">5</span>
+          <h3>Going home</h3>
+          <p>We'll send you their history, vet records and the food they're used to, and we'd love the occasional photo.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CARE / VETTING EXPECTATIONS ============ -->
+  <section class="section" id="care">
+    <div class="wrap">
+      <header class="section-head">
+        <p class="eyebrow">Before you apply</p>
+        <h2>What a rabbit actually needs</h2>
+        <p class="section-lead">Rabbits are often bought as easy starter pets. They aren't. Please have a read — if any of this is a surprise, it's much better to find out now.</p>
+      </header>
+
+      <div class="care-grid">
+        <article class="care-card"><h3><span aria-hidden="true">📐</span> Real space</h3>
+          <p>The recommended minimum is a permanently accessible enclosure of about <strong>3m × 2m × 1m</strong>, day and night. A traditional hutch on its own is nowhere near enough — a rabbit should be able to take three hops in a row and stand fully upright on its back legs.</p></article>
+        <article class="care-card"><h3><span aria-hidden="true">🐇</span> Company</h3>
+          <p>Rabbits are social and are miserable alone. Ideally they live with another neutered rabbit. If you already have one, we can help with bonding — but it takes weeks of patience, not an afternoon.</p></article>
+        <article class="care-card"><h3><span aria-hidden="true">🌾</span> The right food</h3>
+          <p>Unlimited good hay is around 85% of the diet, plus a handful of fresh greens and a small measured portion of pellets. Muesli mixes cause serious dental and gut disease.</p></article>
+        <article class="care-card"><h3><span aria-hidden="true">🩺</span> Vet costs</h3>
+          <p>Annual vaccinations, and a rabbit-savvy vet — not every practice is. Rabbits hide illness until they're very unwell, so an emergency appointment can be needed at short notice. Insurance or savings genuinely matter.</p></article>
+        <article class="care-card"><h3><span aria-hidden="true">🔒</span> Security</h3>
+          <p>Foxes, cats, birds of prey and dogs. Outdoor runs need a solid roof, a dig-proof base and secure bolts. Indoors, cables need protecting — from the rabbit as much as for it.</p></article>
+        <article class="care-card"><h3><span aria-hidden="true">⏳</span> Years, not months</h3>
+          <p>A well-cared-for house rabbit lives 8–12 years. Please think about university, moving, new babies and new jobs before you apply — not after.</p></article>
+      </div>
+
+      <p class="care-foot">Still keen? Wonderful — that's exactly the reaction we were hoping for. <a href="#apply">The form is just below.</a></p>
+    </div>
+  </section>
+
+  <!-- ============ APPLICATION FORM ============ -->
+  <section class="section section-alt" id="apply">
+    <div class="wrap wrap-narrow">
+      <header class="section-head">
+        <p class="eyebrow">Apply</p>
+        <h2>Adoption application</h2>
+        <p class="section-lead">
+          Please answer as honestly as you can — there are no wrong answers, and "not yet, but I will" is a perfectly good one.
+          It takes about ten minutes. Your answers are emailed straight to us and shared with nobody else.
+        </p>
+      </header>
+
+      <p class="form-saved" id="form-saved" hidden>💾 Your progress is saved on this device — you can come back and finish later.</p>
+
+      <form id="adopt-form" class="form" novalidate>
+
+        <fieldset class="fs">
+          <legend><span class="leg-num">1</span> About you</legend>
+
+          <div class="field">
+            <label for="f-name">Your full name <span class="req">*</span></label>
+            <input id="f-name" name="Name" type="text" autocomplete="name" required>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="f-email">Email address <span class="req">*</span></label>
+              <input id="f-email" name="Email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone number <span class="req">*</span></label>
+              <input id="f-phone" name="Phone" type="tel" autocomplete="tel" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="f-town">Town / city <span class="req">*</span></label>
+              <input id="f-town" name="Town" type="text" autocomplete="address-level2" required>
+            </div>
+            <div class="field">
+              <label for="f-postcode">Postcode <span class="req">*</span></label>
+              <input id="f-postcode" name="Postcode" type="text" autocomplete="postal-code" required>
+              <p class="hint">So we know how far you'd be travelling.</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-age">Are you over 18? <span class="req">*</span></label>
+            <select id="f-age" name="Over 18" required>
+              <option value="">Please choose…</option>
+              <option>Yes</option>
+              <option>No — I'm applying with a parent or guardian</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset class="fs">
+          <legend><span class="leg-num">2</span> Which rabbit?</legend>
+
+          <div class="field">
+            <span class="label-ish">Which rabbit or rabbits are you interested in? <span class="req">*</span></span>
+            <p class="hint">Tick as many as you like. If you're not sure yet, tick the last option and we'll help you work it out.</p>
+            <div class="check-grid" id="rabbit-choices"></div>
+            <p class="error" id="err-rabbits" hidden>Please choose at least one.</p>
+          </div>
+
+          <div class="field">
+            <label for="f-why">What draws you to that rabbit in particular? <span class="req">*</span></label>
+            <textarea id="f-why" name="Why this rabbit" rows="3" required></textarea>
+          </div>
+
+          <div class="field">
+            <span class="label-ish">Some of our rabbits are bonded pairs who must be adopted together. Could you take two? <span class="req">*</span></span>
+            <div class="radios">
+              <label><input type="radio" name="Could take a pair" value="Yes, happy to take a pair" required> Yes, happily</label>
+              <label><input type="radio" name="Could take a pair" value="Possibly — would like to discuss"> Possibly — I'd like to discuss it</label>
+              <label><input type="radio" name="Could take a pair" value="No, only one rabbit"> No, only one</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="fs">
+          <legend><span class="leg-num">3</span> Where would they live?</legend>
+
+          <div class="field">
+            <span class="label-ish">Indoors or outdoors? <span class="req">*</span></span>
+            <div class="radios">
+              <label><input type="radio" name="Indoor or outdoor" value="Indoors, free-roaming" required> Indoors, free-roaming in the house</label>
+              <label><input type="radio" name="Indoor or outdoor" value="Indoors in a large pen with daily exercise"> Indoors in a large pen, with daily time out</label>
+              <label><input type="radio" name="Indoor or outdoor" value="Outdoors in a shed or aviary setup"> Outdoors, in a shed or aviary setup</label>
+              <label><input type="radio" name="Indoor or outdoor" value="Outdoors in a hutch with attached run"> Outdoors, hutch with a permanently attached run</label>
+              <label><input type="radio" name="Indoor or outdoor" value="A mix of indoors and outdoors"> A mix of both</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-space">Please describe the space, including rough measurements <span class="req">*</span></label>
+            <p class="hint">For example: "6ft × 2ft hutch with a 8ft × 4ft covered run attached, accessible at all times" or "a spare bedroom, roughly 3m × 3m". Measurements matter more to us than the type of housing.</p>
+            <textarea id="f-space" name="Description of housing" rows="4" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="f-secure">How would the space be kept secure and weatherproof? <span class="req">*</span></label>
+            <p class="hint">Foxes, cats, birds of prey, dogs; digging out underneath; heat in summer and cold in winter.</p>
+            <textarea id="f-secure" name="Security and weatherproofing" rows="3" required></textarea>
+          </div>
+
+          <div class="field">
+            <span class="label-ish">Is that space ready now? <span class="req">*</span></span>
+            <div class="radios">
+              <label><input type="radio" name="Housing ready" value="Yes, ready now" required> Yes, it's set up already</label>
+              <label><input type="radio" name="Housing ready" value="Not yet — will be ready before adoption"> Not yet, but it will be before I take a rabbit</label>
+              <label><input type="radio" name="Housing ready" value="Not yet — would like advice"> Not yet — I'd like some advice on what to get</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-exercise">How much time out of the enclosure would they get each day? <span class="req">*</span></label>
+            <input id="f-exercise" name="Daily exercise time" type="text" required placeholder="e.g. free-roam all day, or 4–5 hours in the evening">
+          </div>
+
+          <div class="field">
+            <span class="label-ish">Do you own your home, or rent? <span class="req">*</span></span>
+            <div class="radios">
+              <label><input type="radio" name="Own or rent" value="Own" required> I own it</label>
+              <label><input type="radio" name="Own or rent" value="Rent — landlord permits pets"> I rent, and my landlord permits pets</label>
+              <label><input type="radio" name="Own or rent" value="Rent — need to check with landlord"> I rent, and I still need to check</label>
+              <label><input type="radio" name="Own or rent" value="Other — explained below"> Other (explained below)</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="fs">
+          <legend><span class="leg-num">4</span> Your household</legend>
+
+          <div class="row">
+            <div class="field">
+              <label for="f-adults">How many adults live there? <span class="req">*</span></label>
+              <input id="f-adults" name="Adults in household" type="text" required>
+            </div>
+            <div class="field">
+              <label for="f-children">Children, and their ages</label>
+              <input id="f-children" name="Children and ages" type="text" placeholder="e.g. two, aged 6 and 11 — or 'none'">
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="label-ish">Is everyone in the household happy about adopting a rabbit? <span class="req">*</span></span>
+            <div class="radios">
+              <label><input type="radio" name="Household agreement" value="Yes, everyone agrees" required> Yes, everyone's on board</label>
+              <label><input type="radio" name="Household agreement" value="Mostly — one person is unsure"> Mostly — one person is unsure</label>
+              <label><input type="radio" name="Household agreement" value="It would be a surprise / gift"> It would be a surprise or a gift for someone</label>
+            </div>
+            <p class="hint">We're afraid we don't rehome rabbits as surprise gifts — but do get in touch and we can talk about it.</p>
+          </div>
+
+          <div class="field">
+            <label for="f-hours">How long would the rabbit typically be alone on a normal day? <span class="req">*</span></label>
+            <input id="f-hours" name="Hours alone per day" type="text" required placeholder="e.g. 6 hours while we're at work">
+          </div>
+
+          <div class="field">
+            <label for="f-responsible">Who will be mainly responsible for their daily care? <span class="req">*</span></label>
+            <input id="f-responsible" name="Primary carer" type="text" required>
+            <p class="hint">If it's a child, please tell us which adult is ultimately responsible.</p>
+          </div>
+        </fieldset>
+
+        <fieldset class="fs">
+          <legend><span class="leg-num">5</span> Other pets &amp; experience</legend>
+
+          <div class="field">
+            <label for="f-pets">What other pets do you have? <span class="req">*</span></label>
+            <p class="hint">Species, how many, ages, and whether any rabbits are neutered. Please write "none" if you have none.</p>
+            <textarea id="f-pets" name="Other pets" rows="3" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="f-dogs">If you have dogs or cats, how would they be kept separate and safe?</label>
+            <textarea id="f-dogs" name="Dog or cat management" rows="2"></textarea>
+          </div>
+
+          <div class="field">
+            <span class="label-ish">Have you kept rabbits before? <span class="req">*</span></span>
+            <div class="radios">
+              <label><input type="radio" name="Rabbit experience" value="Yes, currently have rabbits" required> Yes — I have rabbits right now</label>
+              <label><input type="radio" name="Rabbit experience" value="Yes, in the past"> Yes — in the past</label>
+              <label><input type="radio" name="Rabbit experience" value="No, first time"> No — this would be my first</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-experience">Tell us a little about that <span class="req">*</span></label>
+            <p class="hint">If you've had rabbits before, what happened to them? If this is your first, what reading or research have you done? Both answers are equally welcome — we just want to know where you're starting from.</p>
+            <textarea id="f-experience" name="Experience detail" rows="4" required></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset class="fs">
+          <legend><span class="leg-num">6</span> Care &amp; commitment</legend>
+
+          <div class="field">
+            <label for="f-diet">What would you feed them? <span class="req">*</span></label>
+            <textarea id="f-diet" name="Proposed diet" rows="3" required></textarea>
+          </div>
+
+          <div class="field">
+            <span class="label-ish">Do you have a vet, and is the practice used to rabbits? <span class="req">*</span></span>
+            <div class="radios">
+              <label><input type="radio" name="Vet" value="Yes — registered with a rabbit-savvy vet" required> Yes — registered with a rabbit-savvy vet</label>
+              <label><input type="radio" name="Vet" value="Have a vet, unsure about rabbit experience"> I have a vet, but I'm not sure about rabbits</label>
+              <label><input type="radio" name="Vet" value="Not registered yet — will register"> Not registered yet — I'll sort it out</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="label-ish">Annual vaccinations, and vet bills that can run to several hundred pounds in an emergency — are you able to cover that? <span class="req">*</span></span>
+            <div class="radios">
+              <label><input type="radio" name="Vet costs" value="Yes — insurance in place or planned" required> Yes — I have or will take out insurance</label>
+              <label><input type="radio" name="Vet costs" value="Yes — savings set aside"> Yes — I keep savings set aside for it</label>
+              <label><input type="radio" name="Vet costs" value="It would be difficult"> Honestly, it would be a struggle</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-holiday">Who would look after them if you went away, or were ill? <span class="req">*</span></label>
+            <textarea id="f-holiday" name="Holiday and illness cover" rows="2" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="f-future">Is anything likely to change in the next few years? <span class="req">*</span></label>
+            <p class="hint">Moving house, a new baby, university, a job that means travelling. We ask everyone — it's not a trick question.</p>
+            <textarea id="f-future" name="Foreseeable changes" rows="3" required></textarea>
+          </div>
+
+          <div class="field">
+            <span class="label-ish">If your circumstances changed and you couldn't keep them, what would you do? <span class="req">*</span></span>
+            <div class="radios">
+              <label><input type="radio" name="If unable to keep" value="Return them to you" required> Bring them back to you</label>
+              <label><input type="radio" name="If unable to keep" value="Rehome via a rescue"> Rehome them through a proper rescue</label>
+              <label><input type="radio" name="If unable to keep" value="Rehome privately"> Find them a home myself</label>
+              <label><input type="radio" name="If unable to keep" value="Haven't thought about it"> I haven't thought about it yet</label>
+            </div>
+            <p class="hint">For what it's worth, we'd always take any of them back, at any point, no questions asked.</p>
+          </div>
+        </fieldset>
+
+        <fieldset class="fs">
+          <legend><span class="leg-num">7</span> Nearly done</legend>
+
+          <div class="field">
+            <span class="label-ish">Would you be happy for us to see the rabbit's living space, in person or on a video call? <span class="req">*</span></span>
+            <div class="radios">
+              <label><input type="radio" name="Home check" value="Yes — either is fine" required> Yes, either is fine</label>
+              <label><input type="radio" name="Home check" value="Video call only"> A video call, yes</label>
+              <label><input type="radio" name="Home check" value="Would rather not"> I'd rather not</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-collect">Could you collect, and roughly when would you be ready? <span class="req">*</span></label>
+            <input id="f-collect" name="Collection" type="text" required placeholder="e.g. yes, any weekend from mid-March">
+          </div>
+
+          <div class="field">
+            <label for="f-anything">Anything else you'd like us to know?</label>
+            <textarea id="f-anything" name="Anything else" rows="3"></textarea>
+          </div>
+
+          <div class="field checkbox-field">
+            <label class="consent">
+              <input type="checkbox" id="f-consent" name="Consent" value="Confirmed answers are truthful and consents to be contacted" required>
+              <span>I confirm my answers are truthful, and I'm happy for you to contact me about my application. <span class="req">*</span></span>
+            </label>
+            <p class="error" id="err-consent" hidden>Please tick to continue.</p>
+          </div>
+
+          <!-- Spam trap: hidden from people, filled in by bots -->
+          <div class="hp" aria-hidden="true">
+            <label for="f-website">Leave this empty</label>
+            <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+        </fieldset>
+
+        <div class="form-footer">
+          <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">Send my application 🐇</button>
+          <button type="button" class="btn btn-quiet" id="clear-btn">Clear the form</button>
+          <p class="form-note">We read every application. We'll reply either way, usually within a few days.</p>
+        </div>
+      </form>
+
+      <!-- Deliberately outside the form: on success the form is hidden, and
+           this message has to survive that. -->
+      <div class="form-status" id="form-status" role="status" aria-live="polite" hidden></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span aria-hidden="true">🐰</span>
+      <p id="footer-name">Help Us Rehome Our Bunnies</p>
+    </div>
+    <div class="footer-contact">
+      <p>Questions before you apply? We'd honestly rather you asked.</p>
+      <p><a id="footer-email" href="mailto:mmmrussum@gmail.com">mmmrussum@gmail.com</a></p>
+      <p id="footer-phone" hidden></p>
+    </div>
+    <p class="footer-fine">Made with a lot of love, and a certain amount of sadness, for nine very good rabbits.</p>
+  </div>
+</footer>
+
+<!-- ============ RABBIT DETAIL DIALOG ============ -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+    <button class="modal-close" data-close aria-label="Close">&times;</button>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/rabbits.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
