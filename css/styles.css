@@ -241,9 +241,17 @@ select{appearance:none;cursor:pointer;
 .form-note{font-size:14px;color:var(--ink-soft);margin:4px 0 0}
 .form-status{border-radius:var(--radius);padding:24px 26px;font-size:16px;line-height:1.65}
 .form-status.ok{background:var(--sage-pale);color:var(--sage-deep);text-align:center}
-.form-status.ok strong{display:block;font-family:'Fredoka',sans-serif;font-size:1.4rem;margin-bottom:8px}
+/* Only the opening line is a heading — a <strong> later in a sentence must
+   stay inline, or emphasised words break the paragraph apart. */
+.form-status.ok > strong:first-child{display:block;font-family:'Fredoka',sans-serif;font-size:1.4rem;margin-bottom:8px}
 .form-status.bad{background:var(--pink-pale);color:#9d4a4a}
 .form-status.bad a{color:#9d4a4a;font-weight:700}
+.fallback-actions{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;margin:18px 0 4px}
+.fallback-hint{font-size:14.5px;margin:14px 0 0}
+.fallback-details{margin-top:16px;text-align:left}
+.fallback-details summary{cursor:pointer;font-weight:700;font-size:14.5px}
+.fallback-details textarea{width:100%;margin-top:10px;font-family:ui-monospace,Menlo,Consolas,monospace;
+  font-size:13px;background:#fff;border:2px solid var(--line);border-radius:var(--radius-sm);padding:12px}
 
 /* ---------- footer ---------- */
 .site-footer{background:var(--ink);color:#F3E9DE;padding:56px 0 40px;text-align:center}

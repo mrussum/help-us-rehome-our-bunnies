@@ -390,23 +390,65 @@
     return Object.keys(data).map(function (k) { return k + ":\n  " + data[k]; }).join("\n\n");
   }
 
-  /* -- fallback: hand the answers to the visitor's own email app --------- */
+  /* -- fallback: no forwarding service, so offer the answers to the visitor --
+     Deliberately does NOT redirect to mailto: on its own. On a machine where
+     email isn't set up, that throws up an unconfigured mail client over the
+     page and the application is simply lost. Offer the choice instead, and
+     always offer copy-and-paste as a route that works everywhere. */
   function mailtoFallback(data) {
     var c = cfg;
-    var subject = "Rabbit adoption application — " + (data.Name || "");
-    var body = "Adoption application\n" +
-      "====================\n\n" + asPlainText(data);
+    var text = "Adoption application\n====================\n\n" + asPlainText(data);
     var href = "mailto:" + encodeURIComponent(c.email || "") +
-      "?subject=" + encodeURIComponent(subject) +
-      "&body=" + encodeURIComponent(body);
+      "?subject=" + encodeURIComponent("Rabbit adoption application — " + (data.Name || "")) +
+      "&body=" + encodeURIComponent(text);
 
-    window.location.href = href;
+    pendingText = text;
 
     showStatus("ok",
-      "<strong>Almost there — one more tap 💌</strong>" +
-      "<p>Your email app should have opened with everything filled in. Please press send to finish your application.</p>" +
-      "<p style=\"margin-top:12px;font-size:14.5px\">Nothing happened? No problem — email us at " +
-      '<a href="mailto:' + esc(c.email) + '">' + esc(c.email) + "</a> and we'll send you the questions.</p>");
+      "<strong>Almost there — one last step 💌</strong>" +
+      "<p>Your answers are ready to send to <strong>" + esc(c.email) + "</strong>. " +
+      "Please pick whichever is easier:</p>" +
+      '<div class="fallback-actions">' +
+        '<a class="btn btn-primary" href="' + href.replace(/"/g, "&quot;") + '">Open my email app</a>' +
+        '<button type="button" class="btn btn-ghost" id="copy-answers">Copy my answers</button>' +
+      "</div>" +
+      '<p class="fallback-hint">If your email app doesn\u2019t open, or you use webmail, ' +
+      "press <strong>Copy my answers</strong>, then paste them into a new email to " +
+      '<a href="mailto:' + esc(c.email) + '">' + esc(c.email) + "</a>.</p>" +
+      '<details class="fallback-details"><summary>Show my answers</summary>' +
+        '<textarea id="answers-text" readonly rows="12"></textarea></details>');
+
+    var box = $("#answers-text");
+    if (box) box.value = text;
+
+    var copyBtn = $("#copy-answers");
+    if (copyBtn) {
+      copyBtn.addEventListener("click", function () {
+        copyToClipboard(pendingText, copyBtn);
+      });
+    }
+  }
+
+  var pendingText = "";
+
+  /* navigator.clipboard needs a secure context and isn't there on file:// or
+     older browsers, so fall back to selecting the text for a manual copy. */
+  function copyToClipboard(text, btn) {
+    function done(ok) {
+      btn.textContent = ok ? "Copied ✓" : "Press Ctrl+C to copy";
+      if (!ok) {
+        var d = $(".fallback-details");
+        if (d) d.open = true;
+        var ta = $("#answers-text");
+        if (ta) { ta.focus(); ta.select(); }
+      }
+      setTimeout(function () { btn.textContent = "Copy my answers"; }, 4000);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+    } else {
+      done(false);
+    }
   }
 
   function showStatus(kind, html) {
