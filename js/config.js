@@ -50,7 +50,7 @@ const CONFIG = {
   */
 
   formEndpoint: "https://api.web3forms.com/submit",
-  formAccessKey: "",   // <-- paste your Web3Forms key here
+  formAccessKey: "e0ff7c49-f9d8-4d30-8f29-5d7e32c222b9",   // <-- paste your Web3Forms key here
 
 
   /* ---- Reminder banner ------------------------------------------------ */
