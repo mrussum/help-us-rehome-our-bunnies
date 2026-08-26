@@ -17,6 +17,7 @@
 <div id="setup-banner" class="setup-banner" hidden>
   <span>🐇 <strong>Setup reminder:</strong> this site is still showing example rabbits. Edit <code>js/rabbits.js</code> and <code>js/config.js</code>, then set <code>showSetupBanner: false</code>.</span>
   <span class="banner-status" id="setup-status"></span>
+  <span class="banner-status" id="setup-examples" hidden></span>
 </div>
 
 <a class="skip-link" href="#main">Skip to content</a>
@@ -58,11 +59,11 @@
     </div>
     <div class="wrap hero-inner">
       <p class="eyebrow">A family looking for kind homes</p>
-      <h1>Nine bunnies,<br>looking for<br><em>somewhere lovely</em></h1>
+      <h1><span data-count="caps">Ten</span> bunnies,<br>looking for<br><em>somewhere lovely</em></h1>
       <p class="hero-lead" id="hero-tagline">Nine much-loved rabbits looking for their next chapter</p>
       <p class="hero-body">
         My mum has cared for these rabbits for years, and every one of them has been
-        thoroughly spoiled. She's getting on now, and looking after nine of them has
+        thoroughly spoiled. She's getting on now, and looking after <span data-count>ten</span> of them has
         become more than she can manage. So we're doing the hard thing and finding
         them homes — carefully, and only with people we're confident will do right by them.
       </p>
@@ -80,8 +81,9 @@
   <!-- ============ TRUST STRIP ============ -->
   <section class="strip">
     <div class="wrap strip-grid">
-      <div class="strip-item"><span aria-hidden="true">💉</span><h3>Vaccinated &amp; neutered</h3><p>All up to date on myxomatosis and RHD1/RHD2, and all neutered.</p></div>
-      <div class="strip-item"><span aria-hidden="true">🏠</span><h3>Home-raised</h3><p>Handled daily since they were small. Used to people, noise and normal life.</p></div>
+      <!-- EDIT ME: replace with the true position on vaccinations and neutering -->
+      <div class="strip-item"><span aria-hidden="true">🩺</span><h3>Full history shared</h3><p>We'll tell you exactly where each rabbit stands on vaccinations, neutering and vet care.</p></div>
+      <div class="strip-item"><span aria-hidden="true">🏠</span><h3>Long-loved</h3><p>They have lived with us for years and are used to people and everyday household noise.</p></div>
       <div class="strip-item"><span aria-hidden="true">💛</span><h3>No adoption fee</h3><p>We're not selling them. We just want the right homes.</p></div>
       <div class="strip-item"><span aria-hidden="true">📋</span><h3>Honestly described</h3><p>Where a rabbit is shy, older or hard work, we've said so.</p></div>
     </div>

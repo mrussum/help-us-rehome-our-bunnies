@@ -13,7 +13,7 @@ const CONFIG = {
   siteName: "Help Us Rehome Our Bunnies",
 
   // One friendly line under the big heading.
-  tagline: "Nine much-loved rabbits looking for their next chapter",
+  tagline: "Ten much-loved rabbits looking for their next chapter",
 
   // Where the rabbits are. Helps people know if they're close enough.
   location: "Please add your town / county here",

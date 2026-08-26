@@ -1,6 +1,6 @@
 # Help Us Rehome Our Bunnies
 
-A small website for finding good homes for nine rabbits: a page introducing
+A small website for finding good homes for ten rabbits: a page introducing
 each of them, and a thorough application form so you can tell which
 applicants are genuinely set up to care for a rabbit.
 
@@ -18,13 +18,27 @@ email, and (optionally) a phone number.
 
 ### 2. The rabbits — `js/rabbits.js`
 
-Nine placeholder rabbits are set up, with example bios showing the sort of
-thing that works well. Replace them with the real ones. Keep the punctuation
-— the commas, brackets and colons — exactly where it is, and only change the
-words inside the quote marks.
+All ten are in, with their names, sexes and a description written from the
+photos. Keep the punctuation — the commas, brackets and colons — exactly
+where it is, and only change the words inside the quote marks.
 
-To have fewer than nine, delete a whole block from its opening `{` to its
-closing `},`.
+Each rabbit still needs:
+
+- **`age`** — left blank for now
+- **`neutered`** — set `true` or `false`
+- **`bio`** — each ends with a bracketed prompt to replace
+- **`tags`** — optional badges like `"Good with children"`. Any tag shared
+  by two or more rabbits becomes a filter button; with none set, the filter
+  bar stays hidden.
+- **`bondedWith`** — if any two must be rehomed together
+
+While the setup strip is on, it lists whatever is still outstanding.
+
+`age` and `neutered` are deliberately blank rather than guessed. The site
+simply doesn't mention them until you fill them in, so it never tells an
+adopter something untrue.
+
+To remove a rabbit, delete its whole block from `{` to `},`.
 
 ### 3. Photos — the `photos` folder
 

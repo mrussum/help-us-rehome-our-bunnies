@@ -30,18 +30,38 @@
       '<span>' + esc(name) + "'s photo coming soon</span></div>";
   }
 
-  /* An <img> that quietly swaps itself for the placeholder if the file
-     isn't there yet — so a missing photo never looks like a broken site. */
+  /* An <img> that falls back to the placeholder if the file isn't there yet,
+     so a missing photo never looks like a broken site.
+
+     The swap is wired up in JS rather than an inline onerror= attribute:
+     the placeholder markup contains double quotes, which would close the
+     attribute early and leave a syntax error on every missing photo. */
   function mediaMarkup(rabbit, cls, overlays) {
     var wrap = '<div class="' + cls + '">';
     if (rabbit.photos && rabbit.photos.length) {
-      wrap += '<img src="' + esc(rabbit.photos[0]) + '" alt="' + esc(rabbit.name) + '" loading="lazy" ' +
-              'onerror="this.style.display=\'none\';this.insertAdjacentHTML(\'afterend\',' +
-              "'" + placeholderMarkup(rabbit.name).replace(/'/g, "\\'") + "')\">";
+      var focus = rabbit.focus ? ' style="object-position:center ' + esc(rabbit.focus) + '"' : "";
+      wrap += '<img src="' + esc(rabbit.photos[0]) + '" alt="' + esc(rabbit.name) + '"' +
+              focus + ' loading="lazy" data-fallback="' + esc(rabbit.name) + '">';
     } else {
       wrap += placeholderMarkup(rabbit.name);
     }
     return wrap + (overlays || "") + "</div>";
+  }
+
+  /* Call after inserting any markup containing rabbit photos. Handles images
+     that failed before the listener was attached, which is the common case
+     for a cached 404. */
+  function wirePhotoFallbacks(root) {
+    $$("img[data-fallback]", root).forEach(function (img) {
+      function swap() {
+        if (img.dataset.swapped) return;
+        img.dataset.swapped = "1";
+        img.insertAdjacentHTML("afterend", placeholderMarkup(img.dataset.fallback));
+        img.remove();
+      }
+      img.addEventListener("error", swap);
+      if (img.complete && img.naturalWidth === 0) swap();
+    });
   }
 
   /* ---------------------------------------------------------------------
@@ -60,8 +80,21 @@
     return { mode: "formspree", why: "" };
   }
 
+  var NUMBERS = ["no","one","two","three","four","five","six","seven","eight","nine","ten",
+                 "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen",
+                 "eighteen","nineteen","twenty"];
+  function numberWord(n) { return NUMBERS[n] || String(n); }
+  function capitalise(w) { return w.charAt(0).toUpperCase() + w.slice(1); }
+
   function applyConfig() {
     var c = cfg;
+
+    /* Written out from the actual list, so adding or removing a rabbit can
+       never leave the page saying "nine" while ten are shown below. */
+    var n = bunnies.length;
+    $$("[data-count]").forEach(function (el) {
+      el.textContent = el.dataset.count === "caps" ? capitalise(numberWord(n)) : numberWord(n);
+    });
     if (c.siteName) {
       document.title = c.siteName;
       $("#brand-text").textContent = c.siteName;
@@ -93,6 +126,23 @@
         status.innerHTML = "\u2705 <strong>Applications will be emailed to you</strong> via " +
           (d.mode === "web3forms" ? "Web3Forms" : "Formspree") +
           ". Send yourself a test one to be sure, and check your spam folder.";
+      }
+      var todo = [];
+      var examples = bunnies.filter(function (r) { return r.placeholder; }).length;
+      var noPhoto = bunnies.filter(function (r) { return !(r.photos && r.photos.length); }).length;
+      var noAge = bunnies.filter(function (r) { return !r.age; }).length;
+      var noSex = bunnies.filter(function (r) { return !r.sex; }).length;
+      var noNeuter = bunnies.filter(function (r) { return r.neutered === null || r.neutered === undefined; }).length;
+      if (examples) todo.push(examples + " still example entries");
+      if (noPhoto)  todo.push(noPhoto + " without photos");
+      if (noAge)    todo.push(noAge + " without an age");
+      if (noSex)    todo.push(noSex + " without a sex");
+      if (noNeuter) todo.push(noNeuter + " with neutering unconfirmed");
+      if (/please add/i.test(c.location || "")) todo.push("your location isn't set");
+      if (todo.length) {
+        var note = $("#setup-examples");
+        note.textContent = "\ud83d\udcdd Still to do: " + todo.join(", ") + ".";
+        note.hidden = false;
       }
       $("#setup-banner").hidden = false;
     }
@@ -126,7 +176,7 @@
         '<div class="card-head"><h3>' + esc(rabbit.name) + "</h3>" +
         '<span class="card-sex">' + esc(rabbit.sex || "") +
           (rabbit.neutered ? " · neutered" : "") + "</span></div>" +
-        '<p class="card-meta">' + esc(meta) + "</p>" +
+        (meta ? '<p class="card-meta">' + esc(meta) + "</p>" : "") +
         '<p class="card-summary">' + esc(rabbit.summary || "") + "</p>" +
         '<div class="tags">' + tags + "</div>" +
         '<span class="card-link">Read ' + esc(rabbit.name) + "'s story →</span>" +
@@ -139,6 +189,7 @@
       return;
     }
     grid.innerHTML = bunnies.map(cardMarkup).join("");
+    wirePhotoFallbacks(grid);
     grid.addEventListener("click", function (e) {
       var card = e.target.closest(".rabbit-card");
       if (card) openModal(bunnies[+card.dataset.index]);
@@ -161,6 +212,8 @@
     var useful = order.filter(function (t) { return counts[t] > 1; })
                       .sort(function (a, b) { return counts[b] - counts[a]; });
 
+    if (!useful.length) { bar.hidden = true; return; }
+    bar.hidden = false;
     bar.innerHTML += useful.map(function (t) {
       return '<button class="chip" data-filter="' + esc(t) + '" type="button">' + esc(t) + "</button>";
     }).join("");
@@ -192,9 +245,9 @@
     var gallery = (r.photos && r.photos.length)
       ? '<div class="modal-gallery' + (r.photos.length > 1 ? " multi" : "") + '">' +
           r.photos.map(function (src) {
-            return '<div class="modal-media"><img src="' + esc(src) + '" alt="' + esc(r.name) +
-              '" onerror="this.parentNode.innerHTML=' + '\'' +
-              placeholderMarkup(r.name).replace(/'/g, "\\'") + '\'"></div>';
+            var f = r.focus ? ' style="object-position:center ' + esc(r.focus) + '"' : "";
+            return '<div class="modal-media"><img' + f + ' src="' + esc(src) + '" alt="' +
+              esc(r.name) + '" data-fallback="' + esc(r.name) + '"></div>';
           }).join("") + "</div>"
       : '<div class="modal-gallery"><div class="modal-media">' + placeholderMarkup(r.name) + "</div></div>";
 
@@ -213,8 +266,11 @@
     modalBody.innerHTML = gallery +
       '<div class="modal-content">' +
         '<h2 id="modal-name">' + esc(r.name) + "</h2>" +
-        '<p class="modal-meta">' + esc([r.breed, r.age, r.sex].filter(Boolean).join(" · ")) +
-          (r.neutered ? " · neutered" : "") + "</p>" +
+        (function () {
+          var m = [r.breed, r.age, r.sex].filter(Boolean).join(" · ") +
+                  (r.neutered ? " · neutered" : "");
+          return m ? '<p class="modal-meta">' + esc(m) + "</p>" : "";
+        })() +
         (r.summary ? '<p class="modal-summary">' + esc(r.summary) + "</p>" : "") +
         pairNote +
         (r.bio ? '<p class="modal-bio">' + esc(r.bio) + "</p>" : "") +
@@ -223,6 +279,7 @@
           "Apply to adopt " + esc(r.name) + " 🐇</button>" +
       "</div>";
 
+    wirePhotoFallbacks(modalBody);
     modal.hidden = false;
     document.body.style.overflow = "hidden";
     $(".modal-close").focus();

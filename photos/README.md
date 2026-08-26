@@ -1,41 +1,60 @@
 # Photos go in this folder
 
-## The quick version
+## The ten filenames the site is expecting
 
-1. Drop your photos into this folder.
-2. Open `js/rabbits.js` and list the file names for each rabbit.
+`js/rabbits.js` is already pointing at these exact names. Save each photo
+here with the matching name and it appears straight away — no other change
+needed.
+
+| Rabbit   | Save the photo as   |
+|----------|---------------------|
+| Bertie   | `photos/bertie-1.jpg` |
+| Buffy    | `photos/buffy-1.jpg` |
+| Cornel   | `photos/cornel-1.jpg` |
+| Furina   | `photos/furina-1.jpg` |
+| Misty    | `photos/misty-1.jpg` |
+| Pinto    | `photos/pinto-1.jpg` |
+| Powder   | `photos/powder-1.jpg` |
+| Sizzler  | `photos/sizzler-1.jpg` |
+| Sooty    | `photos/sooty-1.jpg` |
+| Stolas   | `photos/stolas-1.jpg` |
+
+Until a file is there, that rabbit shows a "photo coming soon" placeholder,
+so the site never looks broken while you work through them.
+
+## More than one photo per rabbit
+
+Add `-2`, `-3` and so on (`photos/bertie-2.jpg`), then list them all in
+`js/rabbits.js`:
 
 ```js
-{
-  name: "Clover",
-  photos: ["photos/clover-1.jpg", "photos/clover-2.jpg"],
-  ...
-}
+photos: ["photos/bertie-1.jpg", "photos/bertie-2.jpg"],
 ```
 
-Until you do, each rabbit shows a friendly "photo coming soon" placeholder,
-so the site never looks broken while you're still taking pictures.
+The first is used on the card; all of them show on the rabbit's own page.
 
 ## Tips
 
-**Naming.** Use lowercase names with no spaces — `clover-1.jpg`, not
-`Clover Photo (1).JPG`. Spaces and capitals cause problems on some web hosts.
-The name in the file must match the name in `rabbits.js` exactly, including
-the `.jpg` at the end.
+**Names must match exactly**, including the `.jpg` at the end. Lowercase, no
+spaces. If your phone saved them as `.jpeg` or `.HEIC`, either rename the
+file or change the line in `rabbits.js` to match.
 
-**Size.** Photos straight from a phone are often 4–8 MB each, which makes the
-page slow to load. Resizing them to about 1200 pixels wide gets them under
-500 KB with no visible loss. On a Mac, open the photo in Preview →
-Tools → Adjust Size. On Windows, open in Photos → Resize.
+**Size.** Photos from a phone are often 4–8 MB, which makes the page slow.
+Resizing to about 1200 pixels wide gets them under 500 KB with no visible
+loss. Mac: open in Preview → Tools → Adjust Size. Windows: open in Photos →
+Resize.
 
-**Shape.** The cards crop to a 4:3 landscape shape, so a photo with the
-rabbit roughly in the middle works best. Portrait photos still work — they
-just get cropped top and bottom.
+**Cropping.** Cards crop to a landscape shape and keep the middle of the
+picture. Your photos are portrait, so if a rabbit ends up half cut off, add
+a focus line to that rabbit in `rabbits.js`:
 
-**Getting a good rabbit photo.** Get down to their level rather than
-shooting from above, use daylight instead of flash, and take far more than
-you need. A photo where they're looking at the camera does more to find them
-a home than any amount of writing.
+```js
+focus: "bottom",     // or "top"
+```
 
-You can list as many photos per rabbit as you like. The first one is used on
-the card; all of them appear when someone opens that rabbit.
+**Getting a better photo.** The ones you have are perfectly usable, but a
+few of the rabbits are dark-coated and photographed inside a shaded hutch,
+which makes them hard to make out. If you get a chance, tempt them out into
+open daylight, get down to their level rather than shooting from above, and
+take far more than you think you need. A clear photo of a rabbit looking at
+the camera does more to find them a home than any amount of writing.
