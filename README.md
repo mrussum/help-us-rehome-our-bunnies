@@ -103,6 +103,22 @@ which way the form is currently sending:
 - ✅ *Applications will be emailed to you via Web3Forms* — you're done.
 - ⚠️ *The form is not wired to your inbox yet* — it says why.
 
+### The site isn't updating at all
+
+If **nothing** you change ever appears — not the key, not the photos, not
+any text — the site isn't being rebuilt. Check this before anything else:
+
+**Settings → Pages → Build and deployment.** Under *Branch* there are two
+dropdowns: the branch, and a **folder**. The folder must be **`/ (root)`**.
+
+If it says `/docs`, every build fails instantly — there is no `docs` folder
+in this repository — and the live site stays frozen on whatever was last
+deployed successfully. It fails silently unless you go looking.
+
+To confirm, open the repository's **Actions** tab. Each push should show a
+*"pages build and deployment"* run with a green tick. A red cross means the
+site did not update, whatever the repository says.
+
 ### "I added my key, but it still opens my email app"
 
 Almost always your browser showing an older copy of `config.js`. Hosts tell
@@ -165,8 +181,18 @@ If it doesn't, check in this order:
 2. Under "Build and deployment", set **Source** to *Deploy from a branch*
 3. Choose the branch and the `/ (root)` folder, then **Save**
 
+Make sure the **folder** dropdown says **`/ (root)`** and not `/docs` —
+this site keeps its files at the top level, and pointing Pages at `/docs`
+makes every build fail.
+
 A minute or so later the site is live at
 `https://mrussum.github.io/help-us-rehome-our-bunnies/`
+
+The `.nojekyll` file in the repository root tells Pages to publish these
+files exactly as they are, instead of running them through Jekyll (a blog
+engine this site has no use for). Without it, ordinary text in a rabbit's
+bio — anything containing `{{` or `{%` — would break the whole build.
+Please leave that file in place.
 
 ### Netlify — free, and slightly easier to get a nicer address
 
