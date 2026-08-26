@@ -53,10 +53,4 @@ const CONFIG = {
   formAccessKey: "e0ff7c49-f9d8-4d30-8f29-5d7e32c222b9",   // <-- paste your Web3Forms key here
 
 
-  /* ---- Reminder banner ------------------------------------------------ */
-
-  // A small strip at the top reminding you the demo text is still in place.
-  // Once you've put in your real rabbit details, change this to false.
-  showSetupBanner: false,
-
 };

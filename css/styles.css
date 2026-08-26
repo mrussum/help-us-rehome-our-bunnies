@@ -48,15 +48,6 @@ a{color:var(--sage-deep)}
 .skip-link:focus{left:0}
 :focus-visible{outline:3px solid var(--sage);outline-offset:3px;border-radius:6px}
 
-/* ---------- setup banner ---------- */
-.setup-banner{background:var(--carrot-pale);border-bottom:1px solid var(--carrot);
-  color:#7a5a20;font-size:14px;padding:9px 20px;text-align:center}
-.setup-banner code{background:rgba(255,255,255,.75);padding:1px 6px;border-radius:5px;font-size:13px}
-.banner-status{display:block;margin-top:6px;padding-top:6px;border-top:1px solid rgba(0,0,0,.09);
-  max-width:900px;margin-inline:auto;line-height:1.5}
-.banner-status.good{color:#2f6b3f}
-.banner-status.warn{color:#96421f}
-
 /* ---------- header ---------- */
 .site-header{position:sticky;top:0;z-index:100;background:rgba(255,248,240,.92);
   backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
@@ -319,7 +310,7 @@ select{appearance:none;cursor:pointer;
 }
 
 @media print{
-  .site-header,.hero-decor,.filters,.form-footer,.site-footer,.setup-banner{display:none}
+  .site-header,.hero-decor,.filters,.form-footer,.site-footer{display:none}
   body{background:#fff}
   .fs,.rabbit-card,.care-card,.step{box-shadow:none;border:1px solid #ddd}
 }

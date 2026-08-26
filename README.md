@@ -32,8 +32,6 @@ Each rabbit still needs:
   bar stays hidden.
 - **`bondedWith`** — if any two must be rehomed together
 
-While the setup strip is on, it lists whatever is still outstanding.
-
 **For the bios, see [`writing-the-bios.md`](writing-the-bios.md)** — nine
 worked examples to model, notes on what makes a rescue bio work, and a set
 of questions per rabbit to jog your memory. It doesn't affect the site.
@@ -51,11 +49,6 @@ Drop them in, then list the filenames in `rabbits.js`. See
 `photos/README.md` for how to size them. Rabbits without photos show a
 placeholder, so you can put the site live before you've photographed
 everyone.
-
-### 4. Turn off the reminder strip
-
-Once your real content is in, set `showSetupBanner: false` in
-`js/config.js`.
 
 ---
 
@@ -95,29 +88,10 @@ that in `formEndpoint` and leave `formAccessKey` empty. The free tier allows
 link.** Check your spam folder if it doesn't arrive — the first one
 sometimes lands there, and marking it "not spam" fixes it for good.
 
-### Checking it's wired up
+### Checking the form is wired up
 
-While `showSetupBanner` is `true`, the strip at the top of the page tells you
-which way the form is currently sending:
-
-- ✅ *Applications will be emailed to you via Web3Forms* — you're done.
-- ⚠️ *The form is not wired to your inbox yet* — it says why.
-
-### The site isn't updating at all
-
-If **nothing** you change ever appears — not the key, not the photos, not
-any text — the site isn't being rebuilt. Check this before anything else:
-
-**Settings → Pages → Build and deployment.** Under *Branch* there are two
-dropdowns: the branch, and a **folder**. The folder must be **`/ (root)`**.
-
-If it says `/docs`, every build fails instantly — there is no `docs` folder
-in this repository — and the live site stays frozen on whatever was last
-deployed successfully. It fails silently unless you go looking.
-
-To confirm, open the repository's **Actions** tab. Each push should show a
-*"pages build and deployment"* run with a green tick. A red cross means the
-site did not update, whatever the repository says.
+Open the page, press `F12` for the browser console, and look for the line
+beginning `[bunnies]`. It states exactly how the form will send.
 
 ### "I added my key, but it still opens my email app"
 

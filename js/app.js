@@ -112,42 +112,6 @@
       p.innerHTML = '<a href="tel:' + esc(c.phone.replace(/\s/g, "")) + '">' + esc(c.phone) + "</a>";
       p.hidden = false;
     }
-    if (c.showSetupBanner) {
-      var d = deliveryMethod();
-      var status = $("#setup-status");
-      if (d.mode === "mailto") {
-        status.className = "banner-status warn";
-        status.innerHTML = "\u26a0\ufe0f <strong>The form is not wired to your inbox yet.</strong> " +
-          esc(d.why) + " It will open the visitor's email app instead. " +
-          "If you have just added a key, hard-refresh this page " +
-          "(Ctrl+Shift+R, or Cmd+Shift+R on a Mac) \u2014 your browser may be showing an older copy.";
-      } else {
-        status.className = "banner-status good";
-        status.innerHTML = "\u2705 <strong>Applications will be emailed to you</strong> via " +
-          (d.mode === "web3forms" ? "Web3Forms" : "Formspree") +
-          ". Send yourself a test one to be sure, and check your spam folder.";
-      }
-      var todo = [];
-      var examples = bunnies.filter(function (r) { return r.placeholder; }).length;
-      var noPhoto = bunnies.filter(function (r) { return !(r.photos && r.photos.length); }).length;
-      var noAge = bunnies.filter(function (r) { return !r.age; }).length;
-      var noSex = bunnies.filter(function (r) { return !r.sex; }).length;
-      var noNeuter = bunnies.filter(function (r) { return r.neutered === null || r.neutered === undefined; }).length;
-      if (examples) todo.push(examples + " still example entries");
-      if (noPhoto)  todo.push(noPhoto + " without photos");
-      if (noAge)    todo.push(noAge + " without an age");
-      if (noSex)    todo.push(noSex + " without a sex");
-      if (noNeuter) todo.push(noNeuter + " with neutering unconfirmed");
-      if (/please add/i.test(c.location || "")) { /* handled below */ }
-      if (/please add/i.test(c.location || "")) todo.push("your location isn't set");
-      if (todo.length) {
-        var note = $("#setup-examples");
-        note.textContent = "\ud83d\udcdd Still to do: " + todo.join(", ") + ".";
-        note.hidden = false;
-      }
-      $("#setup-banner").hidden = false;
-    }
-
     // Same answer in the console, for checking without the banner on.
     try {
       var dm = deliveryMethod();
