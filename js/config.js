@@ -16,7 +16,7 @@ const CONFIG = {
   tagline: "Ten much-loved rabbits looking for their next chapter",
 
   // Where the rabbits are. Helps people know if they're close enough.
-  location: "Please add your town / county here",
+  location: "Cambridge, CB1",
 
   // Contact email. The form sends here, and it's shown in the footer.
   email: "mmmrussum@gmail.com",

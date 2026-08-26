@@ -47,7 +47,7 @@ const RABBITS = [
     name: "Bertie",
     photos: ["photos/bertie-1.jpg"],
     breed: "Lop",
-    age: "",                          // <-- add
+    age: "6 years old",
     sex: "Male",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
@@ -62,7 +62,7 @@ const RABBITS = [
     name: "Buffy",
     photos: ["photos/buffy-1.jpg"],
     breed: "Lop cross",
-    age: "",                          // <-- add
+    age: "3 years old",
     sex: "Female",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
@@ -77,7 +77,7 @@ const RABBITS = [
     name: "Cornel",
     photos: ["photos/cornel-1.jpg"],
     breed: "Lop",
-    age: "",                          // <-- add
+    age: "5 years old",
     sex: "Male",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
@@ -92,7 +92,7 @@ const RABBITS = [
     name: "Furina",
     photos: ["photos/furina-1.jpg"],
     breed: "Lop",
-    age: "",                          // <-- add
+    age: "3 years old",
     sex: "Female",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
@@ -107,7 +107,7 @@ const RABBITS = [
     name: "Misty",
     photos: ["photos/misty-1.jpg"],
     breed: "Lop",
-    age: "",                          // <-- add
+    age: "4 years old",
     sex: "Female",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
@@ -122,7 +122,7 @@ const RABBITS = [
     name: "Pinto",
     photos: ["photos/pinto-1.jpg"],
     breed: "Lop",
-    age: "",                          // <-- add
+    age: "3 years old",
     sex: "Male",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
@@ -137,7 +137,7 @@ const RABBITS = [
     name: "Powder",
     photos: ["photos/powder-1.jpg"],
     breed: "Lop",
-    age: "",                          // <-- add
+    age: "3 years old",
     sex: "Female",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
@@ -152,7 +152,7 @@ const RABBITS = [
     name: "Sizzler",
     photos: ["photos/sizzler-1.jpg"],
     breed: "Lop",
-    age: "",                          // <-- add
+    age: "4 years old",
     sex: "Male",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
@@ -167,7 +167,7 @@ const RABBITS = [
     name: "Sooty",
     photos: ["photos/sooty-1.jpg"],
     breed: "Lop",
-    age: "",                          // <-- add
+    age: "4 years old",
     sex: "Female",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
@@ -182,7 +182,7 @@ const RABBITS = [
     name: "Stolas",
     photos: ["photos/stolas-1.jpg"],
     breed: "Lop",
-    age: "",                          // <-- add
+    age: "3 years old",
     sex: "Male",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
