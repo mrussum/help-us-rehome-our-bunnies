@@ -34,6 +34,10 @@ Each rabbit still needs:
 
 While the setup strip is on, it lists whatever is still outstanding.
 
+**For the bios, see [`writing-the-bios.md`](writing-the-bios.md)** — nine
+worked examples to model, notes on what makes a rescue bio work, and a set
+of questions per rabbit to jog your memory. It doesn't affect the site.
+
 `age` is deliberately blank rather than guessed. The site simply doesn't
 mention it until you fill it in, so it never tells an adopter something
 untrue. `neutered` is set to `false` on all ten, which is the true position

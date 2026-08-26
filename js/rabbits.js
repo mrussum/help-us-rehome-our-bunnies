@@ -38,6 +38,12 @@
      Cards crop to a landscape shape. If a photo crops badly, add
      focus: "top" or focus: "bottom" to shift which part is kept.
 
+   WRITING THE BIOS
+     Each bio below describes how the rabbit looks and then ends with a
+     bracketed prompt for you to replace. There are nine worked examples,
+     notes on what makes a bio work, and a list of questions per rabbit in
+     "writing-the-bios.md" in the main folder.
+
    To remove a rabbit, delete its whole block from "{" to "},".
    ========================================================================= */
 
