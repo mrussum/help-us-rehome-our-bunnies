@@ -1,26 +1,29 @@
 # Photos go in this folder
 
-## The ten filenames the site is expecting
+## The photos are in
 
-`js/rabbits.js` is already pointing at these exact names. Save each photo
-here with the matching name and it appears straight away — no other change
-needed.
+All ten are here and wired up in `js/rabbits.js`:
 
 | Rabbit   | Save the photo as   |
 |----------|---------------------|
-| Bertie   | `photos/bertie-1.jpg` |
-| Buffy    | `photos/buffy-1.jpg` |
-| Cornel   | `photos/cornel-1.jpg` |
-| Furina   | `photos/furina-1.jpg` |
-| Misty    | `photos/misty-1.jpg` |
-| Pinto    | `photos/pinto-1.jpg` |
-| Powder   | `photos/powder-1.jpg` |
-| Sizzler  | `photos/sizzler-1.jpg` |
-| Sooty    | `photos/sooty-1.jpg` |
-| Stolas   | `photos/stolas-1.jpg` |
+| Bertie   | `photos/Bertie.jpg` |
+| Buffy    | `photos/Buffy.jpg` |
+| Cornel   | `photos/Cornel.jpg` |
+| Furina   | `photos/Furina.jpg` |
+| Misty    | `photos/Misty.jpg` |
+| Pinto    | `photos/Pinto.jpg` |
+| Powder   | `photos/Powder.jpg` |
+| Sizzler  | `photos/Sizzler.jpg` |
+| Sooty    | `photos/Sooty.jpg` |
+| Stolas   | `photos/Stolas.jpg` |
 
-Until a file is there, that rabbit shows a "photo coming soon" placeholder,
-so the site never looks broken while you work through them.
+**Capitalisation matters.** The web server is case-sensitive, so
+`photos/Bertie.jpg` and `photos/bertie.jpg` are different files. If you
+replace a photo, either keep the name identical or update the line in
+`js/rabbits.js` to match.
+
+If a file is ever missing, that rabbit falls back to a "photo coming soon"
+placeholder rather than showing a broken image.
 
 ## More than one photo per rabbit
 
@@ -44,13 +47,17 @@ Resizing to about 1200 pixels wide gets them under 500 KB with no visible
 loss. Mac: open in Preview → Tools → Adjust Size. Windows: open in Photos →
 Resize.
 
-**Cropping.** Cards crop to a landscape shape and keep the middle of the
-picture. Your photos are portrait, so if a rabbit ends up half cut off, add
-a focus line to that rabbit in `rabbits.js`:
+**Cropping.** Cards crop to a landscape shape. Your photos are portrait, so
+several already have a `focus` line in `rabbits.js` to control which part is
+kept — this is what stops Bertie's face being cut off and keeps the
+handwritten names out of frame:
 
 ```js
-focus: "bottom",     // or "top"
+focus: "68%",    // 0% = top of the photo, 100% = bottom
 ```
+
+Bertie, Buffy, Furina, Misty and Sooty are set; the rest use the middle. If
+you swap a photo and it crops badly, adjust or add that line.
 
 **Getting a better photo.** The ones you have are perfectly usable, but a
 few of the rabbits are dark-coated and photographed inside a shaded hutch,

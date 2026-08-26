@@ -45,7 +45,8 @@ const RABBITS = [
 
   {
     name: "Bertie",
-    photos: ["photos/bertie-1.jpg"],
+    photos: ["photos/Bertie.jpg"],
+    focus: "68%",
     breed: "Lop",
     age: "6 years old",
     sex: "Male",
@@ -60,7 +61,8 @@ const RABBITS = [
 
   {
     name: "Buffy",
-    photos: ["photos/buffy-1.jpg"],
+    photos: ["photos/Buffy.jpg"],
+    focus: "62%",
     breed: "Lop cross",
     age: "3 years old",
     sex: "Female",
@@ -75,7 +77,7 @@ const RABBITS = [
 
   {
     name: "Cornel",
-    photos: ["photos/cornel-1.jpg"],
+    photos: ["photos/Cornel.jpg"],
     breed: "Lop",
     age: "5 years old",
     sex: "Male",
@@ -90,7 +92,8 @@ const RABBITS = [
 
   {
     name: "Furina",
-    photos: ["photos/furina-1.jpg"],
+    photos: ["photos/Furina.jpg"],
+    focus: "58%",
     breed: "Lop",
     age: "3 years old",
     sex: "Female",
@@ -105,7 +108,8 @@ const RABBITS = [
 
   {
     name: "Misty",
-    photos: ["photos/misty-1.jpg"],
+    photos: ["photos/Misty.jpg"],
+    focus: "64%",
     breed: "Lop",
     age: "4 years old",
     sex: "Female",
@@ -120,7 +124,7 @@ const RABBITS = [
 
   {
     name: "Pinto",
-    photos: ["photos/pinto-1.jpg"],
+    photos: ["photos/Pinto.jpg"],
     breed: "Lop",
     age: "3 years old",
     sex: "Male",
@@ -135,7 +139,7 @@ const RABBITS = [
 
   {
     name: "Powder",
-    photos: ["photos/powder-1.jpg"],
+    photos: ["photos/Powder.jpg"],
     breed: "Lop",
     age: "3 years old",
     sex: "Female",
@@ -150,7 +154,7 @@ const RABBITS = [
 
   {
     name: "Sizzler",
-    photos: ["photos/sizzler-1.jpg"],
+    photos: ["photos/Sizzler.jpg"],
     breed: "Lop",
     age: "4 years old",
     sex: "Male",
@@ -165,7 +169,8 @@ const RABBITS = [
 
   {
     name: "Sooty",
-    photos: ["photos/sooty-1.jpg"],
+    photos: ["photos/Sooty.jpg"],
+    focus: "66%",
     breed: "Lop",
     age: "4 years old",
     sex: "Female",
@@ -180,7 +185,7 @@ const RABBITS = [
 
   {
     name: "Stolas",
-    photos: ["photos/stolas-1.jpg"],
+    photos: ["photos/Stolas.jpg"],
     breed: "Lop",
     age: "3 years old",
     sex: "Male",
