@@ -93,6 +93,37 @@ re-uses the cached one.
 **Hard-refresh the page: `Ctrl` + `Shift` + `R`** (`Cmd` + `Shift` + `R` on a
 Mac). The banner should flip to the green message.
 
+**The check that settles it:** open the config file on your live site
+directly —
+
+```
+https://mrussum.github.io/help-us-rehome-our-bunnies/js/config.js
+```
+
+Scroll to `formAccessKey`. That is exactly what the live server is handing
+out, with no page caching in the way.
+
+- **The key is there** → the server is fine, your browser is holding an old
+  copy of the page. Hard-refresh, or bump the `?v=` number (below).
+- **It's empty** → the site hasn't rebuilt yet. Check the **Actions** tab of
+  the repository: a "pages build and deployment" run must have *finished*
+  since you made the edit. It usually takes a minute or two.
+
+### Forcing an update after you edit a file
+
+At the bottom of `index.html` the script tags end in `?v=1`:
+
+```html
+<script src="js/config.js?v=1"></script>
+<script src="js/rabbits.js?v=1"></script>
+<script src="js/app.js?v=1"></script>
+```
+
+Change all three to `?v=2`, then `?v=3` next time. To a browser that is a
+brand new file, so your change shows up straight away instead of after the
+ten-minute cache expires. Worth doing whenever you add photos or edit a
+bio and don't see the change.
+
 If it doesn't, check in this order:
 
 1. Did the change actually get saved and uploaded? On GitHub, open

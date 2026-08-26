@@ -485,8 +485,12 @@
   </div>
 </div>
 
-<script src="js/config.js"></script>
-<script src="js/rabbits.js"></script>
-<script src="js/app.js"></script>
+<!-- The ?v= number is a cache-buster. Hosts tell browsers to keep these
+     files for around ten minutes, so after editing config.js or rabbits.js
+     your change can appear to do nothing. Increase this number (v=2, v=3 …)
+     and everyone gets the new version immediately. -->
+<script src="js/config.js?v=1"></script>
+<script src="js/rabbits.js?v=1"></script>
+<script src="js/app.js?v=1"></script>
 </body>
 </html>
