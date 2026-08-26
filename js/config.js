@@ -57,6 +57,6 @@ const CONFIG = {
 
   // A small strip at the top reminding you the demo text is still in place.
   // Once you've put in your real rabbit details, change this to false.
-  showSetupBanner: true,
+  showSetupBanner: false,
 
 };
