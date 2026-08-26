@@ -47,6 +47,19 @@
   /* ---------------------------------------------------------------------
      1. Apply the settings from config.js
      --------------------------------------------------------------------- */
+  /* How will this page send an application? The submit handler and the setup
+     banner both ask this, so they can never disagree. */
+  function deliveryMethod() {
+    var endpoint = cfg.formEndpoint || "";
+    if (!endpoint) return { mode: "mailto", why: "No formEndpoint is set in config.js." };
+    if (endpoint.indexOf("web3forms") !== -1) {
+      return cfg.formAccessKey
+        ? { mode: "web3forms", why: "" }
+        : { mode: "mailto", why: "formAccessKey is empty in the config.js this page loaded." };
+    }
+    return { mode: "formspree", why: "" };
+  }
+
   function applyConfig() {
     var c = cfg;
     if (c.siteName) {
@@ -66,7 +79,29 @@
       p.innerHTML = '<a href="tel:' + esc(c.phone.replace(/\s/g, "")) + '">' + esc(c.phone) + "</a>";
       p.hidden = false;
     }
-    if (c.showSetupBanner) $("#setup-banner").hidden = false;
+    if (c.showSetupBanner) {
+      var d = deliveryMethod();
+      var status = $("#setup-status");
+      if (d.mode === "mailto") {
+        status.className = "banner-status warn";
+        status.innerHTML = "\u26a0\ufe0f <strong>The form is not wired to your inbox yet.</strong> " +
+          esc(d.why) + " It will open the visitor's email app instead. " +
+          "If you have just added a key, hard-refresh this page " +
+          "(Ctrl+Shift+R, or Cmd+Shift+R on a Mac) \u2014 your browser may be showing an older copy.";
+      } else {
+        status.className = "banner-status good";
+        status.innerHTML = "\u2705 <strong>Applications will be emailed to you</strong> via " +
+          (d.mode === "web3forms" ? "Web3Forms" : "Formspree") +
+          ". Send yourself a test one to be sure, and check your spam folder.";
+      }
+      $("#setup-banner").hidden = false;
+    }
+
+    // Same answer in the console, for checking without the banner on.
+    try {
+      var dm = deliveryMethod();
+      console.log("[bunnies] Applications will be sent via: " + dm.mode + (dm.why ? " \u2014 " + dm.why : ""));
+    } catch (e) { /* ignore */ }
   }
 
   /* ---------------------------------------------------------------------
@@ -405,10 +440,12 @@
     var btn = $("#submit-btn");
 
     // No forwarding service configured yet? Use the visitor's email app.
-    var usingWeb3 = (c.formEndpoint || "").indexOf("web3forms") !== -1;
-    if (!c.formEndpoint || (usingWeb3 && !c.formAccessKey)) {
+    var delivery = deliveryMethod();
+    if (delivery.mode === "mailto") {
+      console.warn("[bunnies] Falling back to the visitor's email app \u2014 " + delivery.why);
       return mailtoFallback(data);
     }
+    var usingWeb3 = delivery.mode === "web3forms";
 
     btn.disabled = true;
     btn.textContent = "Sending…";

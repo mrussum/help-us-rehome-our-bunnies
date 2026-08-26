@@ -76,6 +76,35 @@ that in `formEndpoint` and leave `formAccessKey` empty. The free tier allows
 link.** Check your spam folder if it doesn't arrive — the first one
 sometimes lands there, and marking it "not spam" fixes it for good.
 
+### Checking it's wired up
+
+While `showSetupBanner` is `true`, the strip at the top of the page tells you
+which way the form is currently sending:
+
+- ✅ *Applications will be emailed to you via Web3Forms* — you're done.
+- ⚠️ *The form is not wired to your inbox yet* — it says why.
+
+### "I added my key, but it still opens my email app"
+
+Almost always your browser showing an older copy of `config.js`. Hosts tell
+browsers to keep files for around ten minutes, so an ordinary refresh
+re-uses the cached one.
+
+**Hard-refresh the page: `Ctrl` + `Shift` + `R`** (`Cmd` + `Shift` + `R` on a
+Mac). The banner should flip to the green message.
+
+If it doesn't, check in this order:
+
+1. Did the change actually get saved and uploaded? On GitHub, open
+   `js/config.js` in the repository and look at line 53 — the key should be
+   there.
+2. If you're on GitHub Pages, give it a minute. **Settings → Pages** shows
+   when the last build finished.
+3. Are you opening the file from your own computer rather than the live
+   site? A downloaded copy won't have your later edits.
+4. Open the browser console (`F12`) and look for the line starting
+   `[bunnies]` — it states exactly how the page will send, and why.
+
 ---
 
 ## Putting it on the internet
