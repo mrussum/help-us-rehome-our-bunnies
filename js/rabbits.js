@@ -14,12 +14,13 @@
      The first is used on the card; all of them show on their own page.
 
    STILL TO FILL IN
-     age, sex and neutered are deliberately left blank. While they're empty
-     the site simply doesn't mention them, rather than printing a guess —
-     nobody should read something about these rabbits that isn't true.
+     age is deliberately left blank. While it's empty the site simply doesn't
+     mention it, rather than printing a guess — nobody should read something
+     about these rabbits that isn't true.
        age: "3 years old"
-       sex: "Female"          (or "Male")
-       neutered: true         (or false)
+
+     neutered is set to false for all ten, which is the true position today.
+     If any of them are done later, change that one to true.
 
    TAGS
      Little badges on the card, which also become the filter buttons. Add
@@ -48,7 +49,7 @@ const RABBITS = [
     breed: "Lop",
     age: "",                          // <-- add
     sex: "Male",
-    neutered: null,                   // <-- set true or false
+    neutered: false,                  // none of them are neutered yet
     bondedWith: "",
     tags: [],                         // <-- add once you've decided
     summary: "A big, dense, charcoal-black lop who takes life at his own pace.",
@@ -63,7 +64,7 @@ const RABBITS = [
     breed: "Lop cross",
     age: "",                          // <-- add
     sex: "Female",
-    neutered: null,                   // <-- set true or false
+    neutered: false,                  // none of them are neutered yet
     bondedWith: "",
     tags: [],                         // <-- add once you've decided
     summary: "Dark chocolate coat, one ear up and one down \u2014 permanently mid-question.",
@@ -78,7 +79,7 @@ const RABBITS = [
     breed: "Lop",
     age: "",                          // <-- add
     sex: "Male",
-    neutered: null,                   // <-- set true or false
+    neutered: false,                  // none of them are neutered yet
     bondedWith: "",
     tags: [],                         // <-- add once you've decided
     summary: "Warm sandy-brown, with darker shading around the face and flanks.",
@@ -93,7 +94,7 @@ const RABBITS = [
     breed: "Lop",
     age: "",                          // <-- add
     sex: "Female",
-    neutered: null,                   // <-- set true or false
+    neutered: false,                  // none of them are neutered yet
     bondedWith: "",
     tags: [],                         // <-- add once you've decided
     summary: "Cream-white with smoky ears and nose, and pale blue-grey eyes.",
@@ -108,7 +109,7 @@ const RABBITS = [
     breed: "Lop",
     age: "",                          // <-- add
     sex: "Female",
-    neutered: null,                   // <-- set true or false
+    neutered: false,                  // none of them are neutered yet
     bondedWith: "",
     tags: [],                         // <-- add once you've decided
     summary: "Silver and charcoal \u2014 the colouring the name came from.",
@@ -123,7 +124,7 @@ const RABBITS = [
     breed: "Lop",
     age: "",                          // <-- add
     sex: "Male",
-    neutered: null,                   // <-- set true or false
+    neutered: false,                  // none of them are neutered yet
     bondedWith: "",
     tags: [],                         // <-- add once you've decided
     summary: "Pure snow-white with soft pink-toned ears and dark button eyes.",
@@ -138,7 +139,7 @@ const RABBITS = [
     breed: "Lop",
     age: "",                          // <-- add
     sex: "Female",
-    neutered: null,                   // <-- set true or false
+    neutered: false,                  // none of them are neutered yet
     bondedWith: "",
     tags: [],                         // <-- add once you've decided
     summary: "Soft cream-white with fawn-grey ears and a smudge of grey on the nose.",
@@ -153,7 +154,7 @@ const RABBITS = [
     breed: "Lop",
     age: "",                          // <-- add
     sex: "Male",
-    neutered: null,                   // <-- set true or false
+    neutered: false,                  // none of them are neutered yet
     bondedWith: "",
     tags: [],                         // <-- add once you've decided
     summary: "A handsome silver-ticked coat \u2014 the most unusual colouring of the ten.",
@@ -168,7 +169,7 @@ const RABBITS = [
     breed: "Lop",
     age: "",                          // <-- add
     sex: "Female",
-    neutered: null,                   // <-- set true or false
+    neutered: false,                  // none of them are neutered yet
     bondedWith: "",
     tags: [],                         // <-- add once you've decided
     summary: "Warm caramel and cream, with a neat white bib at the chest.",
@@ -183,7 +184,7 @@ const RABBITS = [
     breed: "Lop",
     age: "",                          // <-- add
     sex: "Male",
-    neutered: null,                   // <-- set true or false
+    neutered: false,                  // none of them are neutered yet
     bondedWith: "",
     tags: [],                         // <-- add once you've decided
     summary: "Cream-white with a dark chocolate mask and matching ears.",

@@ -138,6 +138,7 @@
       if (noAge)    todo.push(noAge + " without an age");
       if (noSex)    todo.push(noSex + " without a sex");
       if (noNeuter) todo.push(noNeuter + " with neutering unconfirmed");
+      if (/please add/i.test(c.location || "")) { /* handled below */ }
       if (/please add/i.test(c.location || "")) todo.push("your location isn't set");
       if (todo.length) {
         var note = $("#setup-examples");
@@ -159,6 +160,14 @@
      --------------------------------------------------------------------- */
   var grid = $("#rabbit-grid");
 
+  /* true -> say so, false -> say so, unset -> say nothing. Silence on a
+     false would read as "neutered" to anyone skimming. */
+  function neuterLabel(r) {
+    if (r.neutered === true) return "neutered";
+    if (r.neutered === false) return "not yet neutered";
+    return "";
+  }
+
   function cardMarkup(rabbit, index) {
     var meta = [rabbit.breed, rabbit.age].filter(Boolean).join(" · ");
     var tags = (rabbit.tags || []).map(function (t) {
@@ -174,8 +183,8 @@
       mediaMarkup(rabbit, "card-media", pair + count) +
       '<div class="card-body">' +
         '<div class="card-head"><h3>' + esc(rabbit.name) + "</h3>" +
-        '<span class="card-sex">' + esc(rabbit.sex || "") +
-          (rabbit.neutered ? " · neutered" : "") + "</span></div>" +
+        '<span class="card-sex">' +
+          esc([rabbit.sex, neuterLabel(rabbit)].filter(Boolean).join(" · ")) + "</span></div>" +
         (meta ? '<p class="card-meta">' + esc(meta) + "</p>" : "") +
         '<p class="card-summary">' + esc(rabbit.summary || "") + "</p>" +
         '<div class="tags">' + tags + "</div>" +
@@ -267,8 +276,7 @@
       '<div class="modal-content">' +
         '<h2 id="modal-name">' + esc(r.name) + "</h2>" +
         (function () {
-          var m = [r.breed, r.age, r.sex].filter(Boolean).join(" · ") +
-                  (r.neutered ? " · neutered" : "");
+          var m = [r.breed, r.age, r.sex, neuterLabel(r)].filter(Boolean).join(" · ");
           return m ? '<p class="modal-meta">' + esc(m) + "</p>" : "";
         })() +
         (r.summary ? '<p class="modal-summary">' + esc(r.summary) + "</p>" : "") +

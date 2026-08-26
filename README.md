@@ -34,9 +34,10 @@ Each rabbit still needs:
 
 While the setup strip is on, it lists whatever is still outstanding.
 
-`age` and `neutered` are deliberately blank rather than guessed. The site
-simply doesn't mention them until you fill them in, so it never tells an
-adopter something untrue.
+`age` is deliberately blank rather than guessed. The site simply doesn't
+mention it until you fill it in, so it never tells an adopter something
+untrue. `neutered` is set to `false` on all ten, which is the true position
+— change an individual one to `true` if it gets done later.
 
 To remove a rabbit, delete its whole block from `{` to `},`.
 
@@ -204,6 +205,7 @@ questions are the ones proper rescues ask, and they cover:
 - Other pets, and how dogs and cats would be kept separate
 - Previous rabbit experience — including what happened to previous rabbits
 - Diet, vet registration, and whether they can cover emergency vet costs
+- Whether they'll arrange neutering, since none of yours are done
 - Holiday cover, foreseeable life changes, and what they'd do if they
   couldn't keep the rabbit
 - Willingness to have the space checked
