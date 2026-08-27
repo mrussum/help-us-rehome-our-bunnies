@@ -111,6 +111,16 @@
     $$("[data-count]").forEach(function (el) {
       el.textContent = el.dataset.count === "caps" ? capitalise(numberWord(n)) : numberWord(n);
     });
+
+    /* The search-engine description can't hold a <span>, so update it here.
+       Only ever touches a first word that is already a number, so a rewritten
+       description is left alone. */
+    var meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.content = meta.content.replace(/^[A-Za-z]+/, function (w) {
+        return NUMBERS.indexOf(w.toLowerCase()) !== -1 ? capitalise(numberWord(n)) : w;
+      });
+    }
     if (c.siteName) {
       document.title = c.siteName;
       $("#brand-text").textContent = c.siteName;
