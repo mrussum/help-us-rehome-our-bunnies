@@ -119,9 +119,11 @@
     if (c.tagline)  $("#hero-tagline").textContent = c.tagline;
     if (c.location) $("#hero-location").textContent = "📍 " + c.location;
     if (c.email) {
-      var a = $("#footer-email");
-      a.textContent = c.email;
-      a.href = "mailto:" + c.email;
+      // every [data-email] link on the page points at the address in config.js
+      $$("[data-email], #footer-email").forEach(function (a) {
+        a.textContent = c.email;
+        a.href = "mailto:" + c.email;
+      });
     }
     if (c.phone) {
       var p = $("#footer-phone");
