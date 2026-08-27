@@ -129,7 +129,7 @@ const RABBITS = [
     bondedWith: "",
     tags: ["Curious", "Wants attention", "Shy at first"],                         // <-- add once you've decided
     summary: "Silver and charcoal \u2014 the colouring the name came from.",
-    bio: "Misty has beautiful smoky colouring: a dark charcoal head and ears blending into a silvered grey saddle, so they look slightly frosted from above. Very mischievous, but wants fuss and attention — a little shy, though well behaved with it.",
+    bio: "Misty has beautiful smoky colouring: a dark charcoal head and ears blending into a silvered grey saddle, so she looks slightly frosted from above. She's very mischievous, but she wants fuss and attention — a little shy, though well behaved with it.",
     likes: [],
     needs: ""
   },
