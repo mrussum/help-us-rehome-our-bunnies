@@ -29,10 +29,15 @@
               "Older & gentle", "Shy at first", "Indoor", "Outdoor"]
      A filter button appears for any tag shared by two or more rabbits.
 
-   BONDED PAIRS
-     If two of them must be rehomed together, put each one's name in the
-     other's bondedWith, e.g. bondedWith: "Misty". The site then flags it
-     on the card, on their page, and next to the form checkbox.
+   BONDED PAIRS AND GROUPS
+     For a pair, put each one's name in the other's bondedWith:
+       bondedWith: "Misty",
+     For a group, use a list, and say what they are to each other:
+       bondedWith: ["Furina", "Powder"],
+       bondedLabel: "sisters",
+       bondedNote: "One sentence explaining the situation.",
+     The site then flags it on the card, on their page, and next to their
+     checkbox on the form. Furina, Powder and Buffy are set up this way.
 
    FOCUS
      The photos are already the right shape for the cards. If you swap one
@@ -72,12 +77,14 @@ const RABBITS = [
     age: "3 years old",
     sex: "Female",
     neutered: false,                  // none of them are neutered yet
-    bondedWith: "",
-    tags: ["Shy at first", "Curious"],                         // <-- add once you've decided
+    bondedWith: ["Furina", "Powder"],
+    bondedLabel: "sisters",
+    bondedNote: "They have lived together all their lives, and we would most like all three to go to one home. Any two of them could be paired instead if a trio isn't possible. Being sisters there is no risk of litters between them, though spaying is still strongly recommended.",
+    tags: ["Bonded sisters", "Shy at first", "Curious"],                         // <-- add once you've decided
     summary: "Dark chocolate coat, one ear up and one down \u2014 permanently mid-question.",
-    bio: "Buffy has a rich near-black coat with a warm brown cast to it in the sun, and the most distinctive ears here: one sits properly lopped while the other stands straight up. She likes her space — very curious, but very shy with it.",
+    bio: "Buffy has a rich near-black coat with a warm brown cast to it in the sun, and the most distinctive ears here: one sits properly lopped while the other stands straight up. She likes her space — very curious, but very shy with it. She is one of three sisters, alongside Furina and Powder.",
     likes: [],
-    needs: "Somewhere calm, and people who'll let her come to them."
+    needs: "Somewhere calm, and people who'll let her come to them. Ideally rehomed with her sisters Furina and Powder."
   },
 
   {
@@ -102,12 +109,14 @@ const RABBITS = [
     age: "3 years old",
     sex: "Female",
     neutered: false,                  // none of them are neutered yet
-    bondedWith: "",
-    tags: ["Shy at first", "Needs patience", "Part of a group"],                         // <-- add once you've decided
+    bondedWith: ["Powder", "Buffy"],
+    bondedLabel: "sisters",
+    bondedNote: "They have lived together all their lives, and we would most like all three to go to one home. Any two of them could be paired instead if a trio isn't possible. Being sisters there is no risk of litters between them, though spaying is still strongly recommended.",
+    tags: ["Bonded sisters", "Shy at first", "Needs patience"],                         // <-- add once you've decided
     summary: "Cream-white with smoky ears and nose, and pale blue-grey eyes.",
-    bio: "Furina is the palest of the group and rather striking with it — a soft cream-white coat with smoky grey shading on the ears, nose and feet, and unusual pale blue-grey eyes. She is paired with her two sisters. Very shy, and would benefit from patient handling and training.",
+    bio: "Furina is the palest of the group and rather striking with it — a soft cream-white coat with smoky grey shading on the ears, nose and feet, and unusual pale blue-grey eyes. Very shy, and would benefit from patient handling and training. She is one of three sisters, alongside Powder and Buffy.",
     likes: [],
-    needs: "Patient handling. Please ask us about her sisters."
+    needs: "Patient handling. Ideally rehomed with her sisters Powder and Buffy."
   },
 
   {
@@ -147,12 +156,14 @@ const RABBITS = [
     age: "3 years old",
     sex: "Female",
     neutered: false,                  // none of them are neutered yet
-    bondedWith: "",
-    tags: ["Shy at first", "Loves a cuddle"],                         // <-- add once you've decided
+    bondedWith: ["Furina", "Buffy"],
+    bondedLabel: "sisters",
+    bondedNote: "They have lived together all their lives, and we would most like all three to go to one home. Any two of them could be paired instead if a trio isn't possible. Being sisters there is no risk of litters between them, though spaying is still strongly recommended.",
+    tags: ["Bonded sisters", "Shy at first", "Loves a cuddle"],                         // <-- add once you've decided
     summary: "Soft cream-white with fawn-grey ears and a smudge of grey on the nose.",
-    bio: "Powder is a gentle, powdery colour all over — creamy white through the body with warm fawn-grey ears and a soft grey smudge across the nose. She's very shy, but she will sit nicely for a cuddle.",
+    bio: "Powder is a gentle, powdery colour all over — creamy white through the body with warm fawn-grey ears and a soft grey smudge across the nose. She's very shy, but she will sit nicely for a cuddle. She is one of three sisters, alongside Furina and Buffy.",
     likes: [],
-    needs: "A quiet home and a bit of patience."
+    needs: "A quiet home and a bit of patience. Ideally rehomed with her sisters Furina and Buffy."
   },
 
   {

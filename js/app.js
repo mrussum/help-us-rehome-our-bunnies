@@ -15,6 +15,22 @@
   var $  = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
+  /* Always name a group in the order they appear on the page, so every
+     member's profile reads the same way round. */
+  function inListOrder(names) {
+    return names.slice().sort(function (a, b) {
+      var ia = bunnies.findIndex(function (r) { return r.name === a; });
+      var ib = bunnies.findIndex(function (r) { return r.name === b; });
+      return ia - ib;
+    });
+  }
+
+  /* "Furina, Powder and Buffy" */
+  function listNames(names) {
+    if (names.length < 2) return names[0] || "";
+    return names.slice(0, -1).join(", ") + " and " + names[names.length - 1];
+  }
+
   function esc(s) {
     return String(s == null ? "" : s)
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
@@ -132,13 +148,26 @@
     return "";
   }
 
+  /* bondedWith takes one name or a list of them, so a pair and a group of
+     three are described by the same code. */
+  function bondedNames(r) {
+    return [].concat(r.bondedWith || []).filter(Boolean);
+  }
+
+  function bondedFlag(r) {
+    var n = bondedNames(r);
+    if (!n.length) return "";
+    if (n.length === 1) return "Bonded with " + n[0];
+    return "One of " + numberWord(n.length + 1) + " " + (r.bondedLabel || "bonded rabbits");
+  }
+
   function cardMarkup(rabbit, index) {
     var meta = [rabbit.breed, rabbit.age].filter(Boolean).join(" · ");
     var tags = (rabbit.tags || []).map(function (t) {
       return '<span class="tag">' + esc(t) + "</span>";
     }).join("");
-    var pair = rabbit.bondedWith
-      ? '<span class="pair-flag">Bonded with ' + esc(rabbit.bondedWith) + "</span>" : "";
+    var flag = bondedFlag(rabbit);
+    var pair = flag ? '<span class="pair-flag">' + esc(flag) + "</span>" : "";
     var count = (rabbit.photos && rabbit.photos.length > 1)
       ? '<span class="photo-count">' + rabbit.photos.length + " photos</span>" : "";
 
@@ -231,10 +260,19 @@
     }
     if (r.needs) facts += '<div class="fact"><h4>What they need</h4><p>' + esc(r.needs) + "</p></div>";
 
-    var pairNote = r.bondedWith
-      ? '<p class="pair-note">💞 ' + esc(r.name) + " is bonded with " + esc(r.bondedWith) +
-        ". They've lived together their whole lives and must be adopted as a pair — we're afraid we can't separate them.</p>"
-      : "";
+    var bonded = bondedNames(r);
+    var pairNote = "";
+    if (bonded.length === 1) {
+      pairNote = '<p class="pair-note">\ud83d\udc9e ' + esc(r.name) + " is bonded with " +
+        esc(bonded[0]) + ". They've lived together their whole lives and must be adopted as a " +
+        "pair \u2014 we're afraid we can't separate them.</p>";
+    } else if (bonded.length > 1) {
+      var label = r.bondedLabel || "bonded rabbits";
+      pairNote = '<p class="pair-note">\ud83d\udc9e ' + esc(r.name) + " is one of " +
+        numberWord(bonded.length + 1) + " " + esc(label) + " \u2014 " +
+        esc(listNames(inListOrder(bonded.concat([r.name])))) + ". " +
+        esc(r.bondedNote || "") + "</p>";
+    }
 
     modalBody.innerHTML = gallery +
       '<div class="modal-content">' +
@@ -311,7 +349,10 @@
   function renderRabbitChoices() {
     var box = $("#rabbit-choices");
     box.innerHTML = bunnies.map(function (r) {
-      var note = r.bondedWith ? " (pair with " + esc(r.bondedWith) + ")" : "";
+      var b = bondedNames(r);
+      var note = !b.length ? ""
+        : b.length === 1 ? " (pair with " + esc(b[0]) + ")"
+        : " (one of " + numberWord(b.length + 1) + " " + esc(r.bondedLabel || "bonded rabbits") + ")";
       return '<label><input type="checkbox" name="Rabbits of interest" value="' + esc(r.name) + '"> ' +
         esc(r.name) + note + "</label>";
     }).join("") +
