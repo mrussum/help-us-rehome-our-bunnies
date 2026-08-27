@@ -35,8 +35,9 @@
      on the card, on their page, and next to the form checkbox.
 
    FOCUS
-     Cards crop to a landscape shape. If a photo crops badly, add
-     focus: "top" or focus: "bottom" to shift which part is kept.
+     The photos are already the right shape for the cards. If you swap one
+     for a taller picture that crops badly, add focus: "top", "bottom" or a
+     percentage like "65%" to shift which part is kept.
 
    WRITING THE BIOS
      Each bio below describes how the rabbit looks and then ends with a
@@ -52,33 +53,31 @@ const RABBITS = [
   {
     name: "Bertie",
     photos: ["photos/Bertie.jpg"],
-    focus: "68%",
     breed: "Lop",
     age: "6 years old",
     sex: "Male",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
-    tags: [],                         // <-- add once you've decided
+    tags: ["Loves a cuddle", "Affectionate"],                         // <-- add once you've decided
     summary: "A big, dense, charcoal-black lop who takes life at his own pace.",
-    bio: "Bertie is the darkest of the group \u2014 a deep charcoal-black all over, with a thick plush coat and proper heavy lop ears framing the face. A solidly built rabbit, who tends to settle in the doorway of the hutch and keep an eye on whatever is going on outside. [Add a few lines here about what he's like with people, what makes him happy, and anything a new home would need to know.]",
+    bio: "Bertie is the darkest of the group — a deep charcoal-black all over, with a thick plush coat and proper heavy lop ears framing the face. He's very soppy and loves a cuddle. He can get a little too excited, but he's mostly calm once he's settled.",
     likes: [],
-    needs: ""
+    needs: "Someone who enjoys a soppy, affectionate rabbit."
   },
 
   {
     name: "Buffy",
     photos: ["photos/Buffy.jpg"],
-    focus: "62%",
     breed: "Lop cross",
     age: "3 years old",
     sex: "Female",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
-    tags: [],                         // <-- add once you've decided
+    tags: ["Shy at first", "Curious"],                         // <-- add once you've decided
     summary: "Dark chocolate coat, one ear up and one down \u2014 permanently mid-question.",
-    bio: "Buffy has a rich near-black coat with a warm brown cast to it in the sun, and the most distinctive ears here: one sits properly lopped while the other stands straight up, giving the constant impression of having just heard something interesting. Very keen on the food bowl. [Add a few lines here about what she's like with people, what makes her happy, and anything a new home would need to know.]",
+    bio: "Buffy has a rich near-black coat with a warm brown cast to it in the sun, and the most distinctive ears here: one sits properly lopped while the other stands straight up. She likes her space — very curious, but very shy with it.",
     likes: [],
-    needs: ""
+    needs: "Somewhere calm, and people who'll let her come to them."
   },
 
   {
@@ -89,41 +88,39 @@ const RABBITS = [
     sex: "Male",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
-    tags: [],                         // <-- add once you've decided
+    tags: ["Shy at first", "Needs a calm home"],                         // <-- add once you've decided
     summary: "Warm sandy-brown, with darker shading around the face and flanks.",
-    bio: "Cornel is a lovely warm colour \u2014 sandy chestnut through the body, shading to a deeper smoky brown around the face, ears and feet, with big dark eyes. A neat, compact, tidy-looking rabbit who tends to tuck into a corner and watch. [Add a few lines here about what he's like with people, what makes him happy, and anything a new home would need to know.]",
+    bio: "Cornel is a lovely warm colour — sandy chestnut through the body, shading to a deeper smoky brown around the face, ears and feet, with big dark eyes. He can be very shy and doesn't enjoy being smothered with fuss, but he will come over for some attention in his own time and at his own pace.",
     likes: [],
-    needs: ""
+    needs: "A patient household that won't crowd him."
   },
 
   {
     name: "Furina",
     photos: ["photos/Furina.jpg"],
-    focus: "58%",
     breed: "Lop",
     age: "3 years old",
     sex: "Female",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
-    tags: [],                         // <-- add once you've decided
+    tags: ["Shy at first", "Needs patience", "Part of a group"],                         // <-- add once you've decided
     summary: "Cream-white with smoky ears and nose, and pale blue-grey eyes.",
-    bio: "Furina is the palest of the group and rather striking with it \u2014 a soft cream-white coat with smoky grey shading on the ears, nose and feet, and unusual pale blue-grey eyes. Extremely serious about mealtimes. [Add a few lines here about what she's like with people, what makes her happy, and anything a new home would need to know.]",
+    bio: "Furina is the palest of the group and rather striking with it — a soft cream-white coat with smoky grey shading on the ears, nose and feet, and unusual pale blue-grey eyes. She is paired with her two sisters. Very shy, and would benefit from patient handling and training.",
     likes: [],
-    needs: ""
+    needs: "Patient handling. Please ask us about her sisters."
   },
 
   {
     name: "Misty",
     photos: ["photos/Misty.jpg"],
-    focus: "64%",
     breed: "Lop",
     age: "4 years old",
     sex: "Female",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
-    tags: [],                         // <-- add once you've decided
+    tags: ["Curious", "Wants attention", "Shy at first"],                         // <-- add once you've decided
     summary: "Silver and charcoal \u2014 the colouring the name came from.",
-    bio: "Misty has beautiful smoky colouring: a dark charcoal head and ears blending into a silvered grey saddle, so she looks slightly frosted from above. A calm-looking rabbit, seemingly happy to sit and be admired. [Add a few lines here about what she's like with people, what makes her happy, and anything a new home would need to know.]",
+    bio: "Misty has beautiful smoky colouring: a dark charcoal head and ears blending into a silvered grey saddle, so they look slightly frosted from above. Very mischievous, but wants fuss and attention — a little shy, though well behaved with it.",
     likes: [],
     needs: ""
   },
@@ -136,11 +133,11 @@ const RABBITS = [
     sex: "Male",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
-    tags: [],                         // <-- add once you've decided
+    tags: ["Shy at first", "Food-motivated", "Could be paired"],                         // <-- add once you've decided
     summary: "Pure snow-white with soft pink-toned ears and dark button eyes.",
-    bio: "Pinto is white from nose to tail \u2014 a bright, clean white coat with delicately pink-lined lop ears and dark, alert eyes that stand out against it. One of the smaller, neater rabbits here, and usually found sitting somewhere he has decided is his. [Add a few lines here about what he's like with people, what makes him happy, and anything a new home would need to know.]",
-    likes: [],
-    needs: ""
+    bio: "Pinto is white from nose to tail — a bright, clean white coat with delicately pink-lined lop ears and dark, alert eyes that stand out against it. He likes his food and watching everything going on. He's very shy, and might do well paired with another rabbit.",
+    likes: ["Food", "Watching the world go by"],
+    needs: "A patient home. Might benefit from being paired with another rabbit."
   },
 
   {
@@ -151,11 +148,11 @@ const RABBITS = [
     sex: "Female",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
-    tags: [],                         // <-- add once you've decided
+    tags: ["Shy at first", "Loves a cuddle"],                         // <-- add once you've decided
     summary: "Soft cream-white with fawn-grey ears and a smudge of grey on the nose.",
-    bio: "Powder is a gentle, powdery colour all over \u2014 creamy white through the body with warm fawn-grey ears and a soft grey smudge across the nose, as though she has been into something. Compact, round and rather serene-looking. [Add a few lines here about what she's like with people, what makes her happy, and anything a new home would need to know.]",
+    bio: "Powder is a gentle, powdery colour all over — creamy white through the body with warm fawn-grey ears and a soft grey smudge across the nose. She's very shy, but she will sit nicely for a cuddle.",
     likes: [],
-    needs: ""
+    needs: "A quiet home and a bit of patience."
   },
 
   {
@@ -166,27 +163,26 @@ const RABBITS = [
     sex: "Male",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
-    tags: [],                         // <-- add once you've decided
+    tags: ["Curious", "Prefers watching"],                         // <-- add once you've decided
     summary: "A handsome silver-ticked coat \u2014 the most unusual colouring of the ten.",
-    bio: "Sizzler has a really lovely silvered coat: each hair banded so the whole rabbit looks frosted with silver over a darker undercoat, with grey lop ears and a wise-looking face. The kind of colouring people stop and ask about. [Add a few lines here about what he's like with people, what makes him happy, and anything a new home would need to know.]",
+    bio: "Sizzler has a really lovely silvered coat: each hair banded so the whole rabbit looks frosted with silver over a darker undercoat, with grey lop ears and a wise-looking face. He's a curious sort, though he'd rather sit and watch than cuddle.",
     likes: [],
-    needs: ""
+    needs: "Someone happy with a rabbit who watches rather than snuggles."
   },
 
   {
     name: "Sooty",
     photos: ["photos/Sooty.jpg"],
-    focus: "66%",
     breed: "Lop",
     age: "4 years old",
     sex: "Female",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
-    tags: [],                         // <-- add once you've decided
+    tags: ["Shy at first", "Food-motivated", "Could be paired"],                         // <-- add once you've decided
     summary: "Warm caramel and cream, with a neat white bib at the chest.",
-    bio: "Sooty is a lovely warm sandy-caramel over the back and head, fading to cream down the sides, with a tidy white bib at the chest and darker shading on the ears. Round, soft and very easy on the eye. [Add a few lines here about what she's like with people, what makes her happy, and anything a new home would need to know.]",
-    likes: [],
-    needs: ""
+    bio: "Sooty is a lovely warm sandy-caramel over the back and head, fading to cream down the sides, with a tidy white bib at the chest. She is very shy, but food and treats win her over. She has a sibling she was separated from, and the two of them could be paired again once both are neutered.",
+    likes: ["Food", "Treats"],
+    needs: "A patient home. Could be reunited with her sibling once both are neutered."
   },
 
   {
@@ -197,11 +193,11 @@ const RABBITS = [
     sex: "Male",
     neutered: false,                  // none of them are neutered yet
     bondedWith: "",
-    tags: [],                         // <-- add once you've decided
+    tags: ["Curious", "Shy at first", "Needs patience"],                         // <-- add once you've decided
     summary: "Cream-white with a dark chocolate mask and matching ears.",
-    bio: "Stolas has the classic pointed colouring \u2014 a pale cream-white body with a distinct dark chocolate-grey mask across the nose and matching shading on the ears, which makes for a very expressive face. Tends to settle quietly in a corner and watch what is happening. [Add a few lines here about what he's like with people, what makes him happy, and anything a new home would need to know.]",
+    bio: "Stolas has the classic pointed colouring — a pale cream-white body with a distinct dark chocolate-grey mask across the nose and matching shading on the ears, which makes for a very expressive face. He is very curious and will watch everything going on. He can be very shy, but is friendly with patient handling.",
     likes: [],
-    needs: ""
+    needs: "Patient handling while he settles in."
   },
 
 ];
