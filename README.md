@@ -14,7 +14,14 @@ to install. Open `index.html` in a browser and it works.
 ### 1. Your details — `js/config.js`
 
 Open it and change the values between the quote marks: your location, your
-email, and (optionally) a phone number.
+contact email, and (optionally) a phone number.
+
+**On privacy:** anything you put in `email` or `phone` appears on a public
+page. Consider an address created just for rehoming rather than a personal
+one. Leaving `email` as `""` hides every contact line on the site and points
+people at the application form instead — applications still reach you,
+because the delivery address is registered with the form service and never
+shown.
 
 ### 2. The rabbits — `js/rabbits.js`
 
@@ -71,7 +78,8 @@ and some people on phones don't. You'll lose a few applications this way.
 ### Recommended — Web3Forms (free, about two minutes)
 
 1. Go to [web3forms.com](https://web3forms.com)
-2. Enter `mmmrussum@gmail.com` — they email you an **access key**
+2. Enter the address you want applications delivered to — they email
+   you an **access key**
 3. Paste that key into `formAccessKey` in `js/config.js`
 
 Done. Applications now arrive in your inbox automatically. The free tier
@@ -106,7 +114,7 @@ Mac). The banner should flip to the green message.
 directly —
 
 ```
-https://mrussum.github.io/help-us-rehome-our-bunnies/js/config.js
+https://YOUR-SITE-ADDRESS/js/config.js
 ```
 
 Scroll to `formAccessKey`. That is exactly what the live server is handing
@@ -160,7 +168,7 @@ this site keeps its files at the top level, and pointing Pages at `/docs`
 makes every build fail.
 
 A minute or so later the site is live at
-`https://mrussum.github.io/help-us-rehome-our-bunnies/`
+the address shown on the Pages settings screen
 
 The `.nojekyll` file in the repository root tells Pages to publish these
 files exactly as they are, instead of running them through Jekyll (a blog

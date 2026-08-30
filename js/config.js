@@ -18,8 +18,13 @@ const CONFIG = {
   // Where the rabbits are. Helps people know if they're close enough.
   location: "Cambridge, CB1",
 
-  // Contact email. The form sends here, and it's shown in the footer.
-  email: "mmmrussum@gmail.com",
+  // Public contact address. Shown on the page, and used if the form falls
+  // back to the visitor's email app.
+  //
+  // Consider using an address made just for this rather than a personal one —
+  // it goes on a public page. Leave it as "" and the site shows no address at
+  // all, and points people to the application form instead.
+  email: "",
 
   // Optional phone number. Leave as "" to hide it completely.
   phone: "",
@@ -36,8 +41,13 @@ const CONFIG = {
        pre-filled, addressed to you. This works with zero setup, but it
        relies on the visitor having email set up on their device.
 
+     Note that this delivery address is private: it is registered with
+     Web3Forms and never appears on the page. Only the "email" value above is
+     public, so the two can be different.
+
      BETTER  (2 minutes, free, recommended):
-       1. Go to https://web3forms.com  — enter mmmrussum@gmail.com
+       1. Go to https://web3forms.com  — enter the address you want
+          applications delivered to
        2. They email you an "access key". Copy it.
        3. Paste it into formAccessKey below.
           Leave formEndpoint exactly as it is.

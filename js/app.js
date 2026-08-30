@@ -128,13 +128,17 @@
     }
     if (c.tagline)  $("#hero-tagline").textContent = c.tagline;
     if (c.location) $("#hero-location").textContent = "📍 " + c.location;
+    /* Every address on the page comes from config.js — there is no copy of it
+       in the markup. Leave email blank and the page shows no address at all
+       and points people at the form instead. */
     if (c.email) {
-      // every [data-email] link on the page points at the address in config.js
-      $$("[data-email], #footer-email").forEach(function (a) {
+      $$("[data-email]").forEach(function (a) {
         a.textContent = c.email;
         a.href = "mailto:" + c.email;
       });
     }
+    $$(".email-line").forEach(function (el) { el.hidden = !c.email; });
+    $$(".no-email-line").forEach(function (el) { el.hidden = !!c.email; });
     if (c.phone) {
       var p = $("#footer-phone");
       p.innerHTML = '<a href="tel:' + esc(c.phone.replace(/\s/g, "")) + '">' + esc(c.phone) + "</a>";
@@ -485,6 +489,13 @@
       "&body=" + encodeURIComponent(text);
 
     pendingText = text;
+
+    if (!c.email) {
+      return showStatus("bad",
+        "<strong>Sorry \u2014 the form isn't connected yet.</strong> " +
+        "No contact address is set, so your answers can't be sent on. " +
+        "Please try again later.");
+    }
 
     showStatus("ok",
       "<strong>Almost there — one last step 💌</strong>" +
